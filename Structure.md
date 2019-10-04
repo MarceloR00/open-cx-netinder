@@ -1,4 +1,3 @@
-
 #Project Structure and Docker configuration
 
 ##Project Structure:
