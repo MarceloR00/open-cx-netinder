@@ -1,64 +1,32 @@
-#Project Structure and Docker configuration
+# NeTinder
 
-##Project Structure:
-![Microservice architecture](/docs/structure.png)
+## User Stories
 
+### Roles
 
-##[Install docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-- This links to the Ubuntu Linux distro, choose yours
-- Test the installation by getting the version (should be Docker version 19.03.2 or latest):
-```bash
-    sudo docker -v
-```
-- Make sure everything is fine by downloading the hello-world image from docker hub and running it:
-```bash
-    sudo docker run hello-world
-```
-- **OPTIONAL**: If you don't want to type 'sudo' everytime you write a command (trust me you don't) do [this](https://docs.docker.com/install/linux/linux-postinstall/). Again, this is for Linux, pick your own OS.
+| **Identifier** | **Description** |
+| ------------- |-------------|
+| Visitor | Unauthenticated user that can register or log in |
+| Authenticated User | Authenticated user that can manage their own account |
 
-##[Install docker-compose](https://docs.docker.com/compose/install/)
-- tl;dr: If you're on linux:
-    ```bash
-    docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    ```
-    ```bash
-    sudo chmod +x /usr/local/bin/docker-compose
-    ```
-- tl;dr: If you're on macOS, I think compose comes natively with docker so check it on the next step
-- Test the installation (should be 1.24.1 or latest):
-    ```bash
-    docker-compose --version
-    ```
+### 1. Visitor
 
-##Run the code on docker
-- Things should already be configured so here are the main steps and commands you should know: 
-- To run the code, you must be on the root project folder, in the same level as the docker-compose.yaml file. Run:
-    ```bash
-    docker-compose up
-    ```
-- This builds our custom image and runs it on port 1000. localhost:1000 gets you there.
-- To check all you images:
-    ```bash
-    docker images
-    ```
-- To check all you running containers:
-    ```bash
-    docker ps
-    ```
-- To check all running and dead containers:
-    ```bash
-    docker container ls -a
-    ```
-- To remove all your dead containers:
-    ```bash
-    docker container prune
-    ```
-- To remove all your unused images:
-    ```bash
-    docker image prune
-    ```
-- To remove absolutely everything and start fresh:
-    ```bash
-    docker system prune
-    ```
-[That's it :D](https://www.youtube.com/watch?v=Q3bbsDJWlXQ)
+| **Identifier** | **Name** | **Priority** | **Description** |
+| ------------- | ------------- | ----- | ----- |
+| US001 | Register | High | As a Visitor, I want to register into the system, so that I can have access to user's privileges. |
+| US002 | Log In | High | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. |
+
+### 2. Authenticated User
+
+| **Identifier** | **Name** | **Priority** | **Description** |
+| ------------- | ------------- | ----- | ----- |
+| US101 | Profile page | | As an Authenticated User, I want to access my profile page, so that I can see my personal data. |
+| US102 | Edit Profile | | As an Authenticated User, I want to edit my profile, so I can keep it updated. |
+| US103 | Log Out |  | As an Authenticated User, I want to log out from the system, so that I can end my session. |
+| US104 | Delete Account |  | As an Authenticated User, I want to delete my personal account, sso that I can delete all my personal data from the system. |
+| US105 | See Notifications |  | As an Authenticated User, I want to see my notifications, so that I can know when someone with the same interests as me is near. |
+| US106 | Clear Notifications |  | As an Authenticated User, I want to clear my notifications, so that I can keep them organized. |
+| US107 | View previous matches |  | As an Authenticated User, I want to view my previous matches, so that I can remember who I matched with. |
+| US108 | See my conferences |  | As an Authenticated User, I want to see my conferences, so that I can know which ones I attended. |
+| US109 | Check my points |  | As an Authenticated User, I want to check my points, so that I can see how many points I earned |
+| US110 | Manage my points |  | As an Authenticated User, I want to manage my points, so that I can trade them. |
