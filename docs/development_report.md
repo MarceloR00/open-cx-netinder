@@ -46,12 +46,18 @@ And the more you network with others, the more prizes you win!
 
 ---
 ## Requirements
+### Functional requirements
 - The system shall be based on two main components: a mobile app and a microbit.
 - The app shall allow the user to pick his main areas of interest (that will be debated in the conference).
 - The app shall feature a login system so that a user can access his personal information.
 - The app must let users claim the prizes they have won, and check their progress in getting them.
 - The microbit shall detect when a match is nearby the user via bluetooth.
 - The microbit shall emit a noise and display a number that will allow easy idenfitication by the other participant that he was matched with.
+- The app and the microbit shall communicate with each other in order to sync information.
+
+### Non-functional requirements
+- Bluetooth communications should be smooth and stable
+
 In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
 
 Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
