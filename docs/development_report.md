@@ -62,41 +62,169 @@ And the more you network with others, the more prizes you win!
 
 ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/docs/use_case_diagram.jpg?token=AGNJ76E5Y37536EOU4JSAYK5XQLDU)
 
-Briefly describe each use case mentioning the following:
+#### Pick tags
+* **Actor** - A person attending the conference
 
-* **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks. 
-* **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case. 
-* **Preconditions and Postconditions**. Include any activities that must take place, or any conditions that must be true, before the use case can be started (preconditions) and postconditions. Describe also the state of the system at the conclusion of the use case execution (postconditions). 
+* **Description** - In order for a participant to be matched with others, their favourite topics need to be explicited (which assume the form of tags). When the tags are selected, more appropriate matches will be found and the user's interaction will be much more valuable.
 
-* **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system. 
-* **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions. 
+* **Preconditions and Postconditions** - The user needs to have signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
+
+* **Normal Flow**
+
+    1 - User thinks of a tag that is of his interest
+
+    2 - User checks if the tag is present in the list of available tags. If the tag exists, he selects it
+    
+    3 - The system rememebers the tag as selected by the user
+    
+    4 - The system now uses the tag to match the user with others that have picked this same tag
+
+* **Alternative Flows and Exceptions**. It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
+
+#### View list of matches
+* **Actor** - A person attending the conference
+
+* **Description** - The user must be able to check his matches. 
+
+In order for a participant to be matched with others, their favourite topics need to be explicited (which assume the form of tags). When the tags are selected, more appropriate matches will be found and the user's interaction will be much more valuable.
+
+* **Preconditions and Postconditions** - The user needs to have signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
+
+* **Normal Flow**
+
+    1 - User thinks of a tag that is of his interest
+
+    2 - User checks if the tag is present in the list of available tags. If the tag exists, he selects it
+    
+    3 - The system rememebers the tag as selected by the user
+    
+    4 - The system now uses the tag to match the user with others that have picked this same tag
+
+* **Alternative Flows and Exceptions**. It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
+
+#### Check/manage points and available discounts
 
 ### User stories
+We have a more up-to-date set of user stories in our Trello board, that we have made public so that you can watch our progress as development continues (https://trello.com/b/8qWwiWTX/netinder).
 
-#### 1. Visitor
+The board consists of user stories. Each one of them is assigned a priority as a label, and these priorities can assume one of four states: Critical, urgent, moderately important and nice to have. 
 
-| **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
-| -------------- | -------- | ------------ | ------------------------- | --------------|
-| US001          | Sign Up | High         | As a Visitor, I want to register into the system, so that I can have access to user's privileges. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20up.png?token=AGNJ76AAGI37TQFMPJ2BTYK5XQJVS) |
-| US002          | Sign In   | High         | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20in.png?token=AGNJ76FLKT5QGBS53X3O2EK5XQIWQ)|
+We are also identifying each user story with a label that identifies it as part of the frontend, backend or microbit portion of our software.
 
-#### 2. Authenticated User
+In the description of each card you can take a look at the acceptance tests and use-case scenarios. Each card is also assigned to one (seldom multiple) of the team members.
+Our kanban board is made up of several lists: 
+- Backlog - requirements that are not yet specified as user stories
+- Todo - user stories awaiting a developer to pick them
+- In progress - user stories currently being developed
+- Review in progress - user story that has been developed but is awaiting review (by means of approving a pull request)
+- Reviewer approved - user story that has been approved by more than one member of the development team
+- Done - fully implemented requirements
+Each one of the cards in our Trello board has a mockup as an attatchment. Be sure to check it out!
 
-| **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
-| -------------- | -------- | ------------ | ------------------------- | --------------|
-| US101          | Profile page          |              | As an Authenticated User, I want to access my profile page, so that I can see my personal data.                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
-| US102          | Edit Profile          |              | As an Authenticated User, I want to edit my profile, so I can keep it updated.                                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
-| US103          | Log Out               |              | As an Authenticated User, I want to log out from the system, so that I can end my session.                                       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
-| US104          | Delete Account        |              | As an Authenticated User, I want to delete my personal account, so that I can delete all my personal data from the system.       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
-| US105          | See Notifications     |              | As an Authenticated User, I want to see my notifications, so that I can know when someone with the same interests as me is near. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
-| US106          | Clear Notifications   |              | As an Authenticated User, I want to clear my notifications, so that I can keep them organized.                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
-| US107          | View previous matches |              | As an Authenticated User, I want to view my previous matches, so that I can remember who I matched with.                         | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/matches.png?token=AGNJ76A7R7FMO2TWURRS42C5XQJ5O) |
-| US108          | See my conferences    |              | As an Authenticated User, I want to see my conferences, so that I can know which ones I attended.                                | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
-| US109          | Check my points       |              | As an Authenticated User, I want to check my points, so that I can see how many points I earned                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
-| US110          | Manage my points      |              | As an Authenticated User, I want to manage my points, so that I can trade them.                                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+We are also assigning points to each of our stories as a way to measure the effort requires to implement each one of them. We'll be using the following set of fibonacci numbers while sizing a user story, from minimum to max effort: 1, 2, 3, 5, 8, 13, 21. 
+
+| **Identifier** | **Name**                                       | **Priority**          | **Description**                                                                                                           | **Mockup**                                                                                                                              |
+|----------------|------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| US101          | Pair microbit with app                         | Urgent                | As an Authenticated User, I want to access my profile page, so that I can see my personal data.                           |                                                                                                                                         |
+| US102          | Create sign-in/sign-up UI                      | Urgent                | As a user, I want to access the sign-in/sign-up menu, so that I can enter my login information                            | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
+| US103          | Store user information as JSON file            | Urgent                | As a user, I want to have my information stored so it can be exchanged                                                    |                                                                                                                                         |
+| US104          | Notify with microbit using sound and LED panel | Moderately importante | As an authenticated user, I want to have a microbit identifying me so that I can spot my match faster                     |                                                                                                                                         |
+| US105          | Sign-in/sign-up                                | Urgent                | As a visitor, I want to sign in/sign up, so that I can personalize my experience                                          | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
+| US106          | Logout                                         | Urgent                | As an Authenticated User, I want to logout from the system, so that I can end my session                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
+| US107          | Sense potential match nearby                   | Urgent                | As a user, I want to know which users are around me, so that I can be matched with the ones with the same interests.      |                                                                                                                                         |
+| US108          | Update account info                            | Moderately important  | As a user, I want to know which users are around me, so that I can be matched with the ones with the same interests       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
+| US109          | Notify match nearby                            | Moderately important  | As a user, I want to be notified so that I am alerted to the presence of a match nearby                                   |                                                                                                                                         |
+| US110          | Manage tags                                    | Moderately important  | As an authenticated user, I want to manage my tags so that I can be matched with other attendees                          |                                                                                                                                         |
+| US111          | Delete account                                 | Nice to have          | As an Authenticated User, I want to delete my personal account, so that I can delete all my personal data from the system | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
+| US112          | Manage points                                  | Nice to have          | As an Authenticated User, I want to manage and view my points, so that I can trade them                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
+| US113          | View attended conferences' list                | Nice to have          | As a user, I want to see my conferences, so that I can know which ones I attended                                         | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
+| US114          | View previous matches                          | Nice to have          | As an Authenticated User, I want to view my previous matches, so that I keep tabs with them                               | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/matches.png?token=AGNJ76A7R7FMO2TWURRS42C5XQJ5O)     |
 
 **Acceptance tests**.
-For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
+*US101*
+Participant uses his microbit to find a match:
+- Given that the participant needs to use his microbit 
+- When he wants to interact with it 
+- Then he needs to pair it with the app
+
+*US102*
+User wants to add a tag:
+- Given that the user wants his information stored
+- When he is adding a new tag
+- Then he needs to sign up/sign in 
+
+*US103*
+User matches with another one:
+- Given that a user is matched with another participant
+- When both of them are in close proximity
+- Then their personal information needs to be added to each user's history of matches
+
+*US104*
+User finds a match:
+- Given that the conference environment is crowded and congested
+- When the user is walking around the campus
+- Then he needs be easily identified (using sound and microbit LED panel)
+
+*US105*
+User wants to save his information:
+- Given that a user needs his information to be stored permanently
+- When he is participating in a conference
+- Then he needs to create a profile so that the information can be linked to him
+
+*US106*
+User won't be attending more conferences:
+- Given that a user might not be attending conferences anymore
+- When he leaves the current one
+- Then he must be able to logout from his account
+
+*US107*
+Match with user nearby:
+- Given that a potential match may be nearby:
+- When a user is in close proximity with others
+- Then he needs to sense nearby participants and check if a match can happen
+
+*US108*
+User needs to change his email address:
+- Given that a user can be contacted by others through his email address
+- When he has been matched with other participants
+- Then he needs to alter it whenever he wants to
+
+*US109*
+User finds a match:
+- Given that the conference grounds are crowded
+- When the participant is walking by
+- He needs to be called to attention whenever a match is nearby
+
+*US110*
+User has a new interest:
+- Given that a user can start linking a new knowledge area after a talk
+- When he is attending the conference
+- Then he needs to be able to add new tags as interests
+
+*US111*
+Right to be forgotten:
+- Given that every EU citizen has the digital right to be forgotten
+- When he uses our app services
+- Then he needs to be able to completely remove his information from our app/servers.
+
+*US112*
+Trade points for goodies:
+- Given that a user accumulates points the more matches he gets
+- When attending the conference
+- Then he needs to be able to exchange these points for goodies provided by the sponsor companies
+
+*US113*
+Check accumulated points from past conferences:
+- Given that a user might want to check his points from past conferences
+- When he is logged in to the app
+- Then he must be able to see a list of events he attended previously, as well as the amount of points he has collected 
+
+*US114*
+Keep in touch with matches
+- Given that a user might want to talk to a participant he was matched with
+- When the conference is over/while the conference is occurring
+- Then he must be able to see a list of people he was matched with
+
 
 **Value and effort**.
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
@@ -164,15 +292,5 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 ---
 
 ## Project management
-
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
-
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
+We are using a Trello board to manage user stories - and set their priorities, categories, use cases, assignee, due date and current status.
+Our kanban board is public for viewing. You can consult it using the following link: https://trello.com/b/8qWwiWTX/netinder.
