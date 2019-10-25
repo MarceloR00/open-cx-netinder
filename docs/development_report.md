@@ -82,27 +82,9 @@ And the more you network with others, the more prizes you win!
 * **Alternative Flows and Exceptions**. It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
 
 #### View list of matches
-* **Actor** - A person attending the conference
-
-* **Description** - The user must be able to check his matches. 
-
-In order for a participant to be matched with others, their favourite topics need to be explicited (which assume the form of tags). When the tags are selected, more appropriate matches will be found and the user's interaction will be much more valuable.
-
-* **Preconditions and Postconditions** - The user needs to have signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
-
-* **Normal Flow**
-
-    1 - User thinks of a tag that is of his interest
-
-    2 - User checks if the tag is present in the list of available tags. If the tag exists, he selects it
-    
-    3 - The system rememebers the tag as selected by the user
-    
-    4 - The system now uses the tag to match the user with others that have picked this same tag
-
-* **Alternative Flows and Exceptions**. It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
-
+To be completed
 #### Check/manage points and available discounts
+To be completed
 
 ### User stories
 We have a more up-to-date set of user stories in our Trello board, that we have made public so that you can watch our progress as development continues (https://trello.com/b/8qWwiWTX/netinder).
