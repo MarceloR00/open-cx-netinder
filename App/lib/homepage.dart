@@ -16,65 +16,28 @@ class HomePage extends StatelessWidget {
             child: Center(
               child: Column(
                 children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
                   Center(
                     child: SizedBox(
-                        width: 300,
-                        height: 200,
+                        width: 315,
+                        height: 250,
                         child: FittedBox(
                           child: Image.asset('docs/logo.jpg'),
-                          fit: BoxFit.fitHeight,
+                          fit: BoxFit.fitWidth,
                         )
                     ),
                   ),
                   SizedBox(
-                    height: 60, //ADICIONAR AQUI SIGN UP/SIGN IN
+                    height: 50, //ADICIONAR AQUI SIGN UP/SIGN IN
                   ),
-                  TextField(
-                    autofocus: false,
-                    obscureText: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: "Email",
-                      hintText: "Email",
-                      labelStyle: TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 16,
-                      ),
-                      border: OutlineInputBorder (
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.amber,
-                          style: BorderStyle.solid,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  TextField(
-                    autofocus: false,
-                    obscureText: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      hintText: "Password",
-                      labelStyle: TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 16,
-                      ),
-                      border: OutlineInputBorder (
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.amber,
-                          style: BorderStyle.solid,
-                        ),
-                      ),
+                  ButtonTheme(
+                    minWidth: double.infinity,
+                    child: MaterialButton(
+                      onPressed: () => {},
+                      textColor: Colors.white,
+                      color: Colors.redAccent,
+                      height: 50,
+                      child:
+                      Text("SIGN UP"),
                     ),
                   ),
                   SizedBox(
@@ -84,7 +47,7 @@ class HomePage extends StatelessWidget {
                     minWidth: double.infinity,
                     child: MaterialButton(
                       onPressed: () => {},
-                      textColor: Colors.black,
+                      textColor: Colors.white,
                       color: Colors.redAccent,
                       height: 50,
                       child:

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'homepage.dart';
+import 'sign_up.dart';
+import 'sign_in.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
+      theme: new ThemeData(
+        primaryColor: Colors.redAccent,
+      )
     );
   }
 }
