@@ -77,10 +77,10 @@ Briefly describe each use case mentioning the following:
 
 #### 1. Visitor
 
-| **Identifier** | **Name** | **Priority** | **Description**                                                                                                         |
-| -------------- | -------- | ------------ | ----------------------------------------------------------------------------------------------------------------------- | --------------|
-| US001          | Sign Up | High         | As a Visitor, I want to register into the system, so that I can have access to user's privileges. | ![Sign Up](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20up.png?token=AGNJ76ETBSSZXH64CGORGEC5XQISG) |
-| US002          | Sign In   | High         | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. | ![Sign In](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20in.png?token=AGNJ76FLKT5QGBS53X3O2EK5XQIWQ)|
+| **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
+| -------------- | -------- | ------------ | ------------------------- | --------------|
+| US001          | Sign Up | High         | As a Visitor, I want to register into the system, so that I can have access to user's privileges. |  |
+| US002          | Sign In   | High         | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. | |
 
 #### 2. Authenticated User
 
