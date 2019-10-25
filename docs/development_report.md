@@ -79,23 +79,23 @@ Briefly describe each use case mentioning the following:
 
 | **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
 | -------------- | -------- | ------------ | ------------------------- | --------------|
-| US001          | Sign Up | High         | As a Visitor, I want to register into the system, so that I can have access to user's privileges. |  |
-| US002          | Sign In   | High         | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. | |
+| US001          | Sign Up | High         | As a Visitor, I want to register into the system, so that I can have access to user's privileges. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20up.png?token=AGNJ76AAGI37TQFMPJ2BTYK5XQJVS) |
+| US002          | Sign In   | High         | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20in.png?token=AGNJ76FLKT5QGBS53X3O2EK5XQIWQ)|
 
 #### 2. Authenticated User
 
-| **Identifier** | **Name**              | **Priority** | **Description**                                                                                                                  |
-| -------------- | --------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| US101          | Profile page          |              | As an Authenticated User, I want to access my profile page, so that I can see my personal data.                                  |
-| US102          | Edit Profile          |              | As an Authenticated User, I want to edit my profile, so I can keep it updated.                                                   |
-| US103          | Log Out               |              | As an Authenticated User, I want to log out from the system, so that I can end my session.                                       |
-| US104          | Delete Account        |              | As an Authenticated User, I want to delete my personal account, so that I can delete all my personal data from the system.       |
-| US105          | See Notifications     |              | As an Authenticated User, I want to see my notifications, so that I can know when someone with the same interests as me is near. |
-| US106          | Clear Notifications   |              | As an Authenticated User, I want to clear my notifications, so that I can keep them organized.                                   |
-| US107          | View previous matches |              | As an Authenticated User, I want to view my previous matches, so that I can remember who I matched with.                         |
-| US108          | See my conferences    |              | As an Authenticated User, I want to see my conferences, so that I can know which ones I attended.                                |
-| US109          | Check my points       |              | As an Authenticated User, I want to check my points, so that I can see how many points I earned                                  |
-| US110          | Manage my points      |              | As an Authenticated User, I want to manage my points, so that I can trade them.                                                  |
+| **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
+| -------------- | -------- | ------------ | ------------------------- | --------------|
+| US101          | Profile page          |              | As an Authenticated User, I want to access my profile page, so that I can see my personal data.                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US102          | Edit Profile          |              | As an Authenticated User, I want to edit my profile, so I can keep it updated.                                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US103          | Log Out               |              | As an Authenticated User, I want to log out from the system, so that I can end my session.                                       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
+| US104          | Delete Account        |              | As an Authenticated User, I want to delete my personal account, so that I can delete all my personal data from the system.       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US105          | See Notifications     |              | As an Authenticated User, I want to see my notifications, so that I can know when someone with the same interests as me is near. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US106          | Clear Notifications   |              | As an Authenticated User, I want to clear my notifications, so that I can keep them organized.                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US107          | View previous matches |              | As an Authenticated User, I want to view my previous matches, so that I can remember who I matched with.                         | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/matches.png?token=AGNJ76A7R7FMO2TWURRS42C5XQJ5O) |
+| US108          | See my conferences    |              | As an Authenticated User, I want to see my conferences, so that I can know which ones I attended.                                | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
+| US109          | Check my points       |              | As an Authenticated User, I want to check my points, so that I can see how many points I earned                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US110          | Manage my points      |              | As an Authenticated User, I want to manage my points, so that I can trade them.                                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
 
 **Acceptance tests**.
 For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
