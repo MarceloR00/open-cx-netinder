@@ -58,15 +58,9 @@ And the more you network with others, the more prizes you win!
 ### Non-functional requirements
 - Bluetooth communications should be smooth and stable
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
-
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
-
 ### Use case diagram 
 
-Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
-
-Give each use case a concise, results-oriented name. Use cases should reflect the tasks the user needs to be able to accomplish using the system. Include an action verb and a noun. 
+![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/docs/use_case_diagram.jpg?token=AGNJ76E5Y37536EOU4JSAYK5XQLDU)
 
 Briefly describe each use case mentioning the following:
 
@@ -78,20 +72,28 @@ Briefly describe each use case mentioning the following:
 * **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions. 
 
 ### User stories
-This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
 
-For each theme, or role, you may add a small description. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
+#### 1. Visitor
 
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is 
+| **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
+| -------------- | -------- | ------------ | ------------------------- | --------------|
+| US001          | Sign Up | High         | As a Visitor, I want to register into the system, so that I can have access to user's privileges. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20up.png?token=AGNJ76AAGI37TQFMPJ2BTYK5XQJVS) |
+| US002          | Sign In   | High         | As a Visitor, I want to log in into the system, so that I can authenticate myself and have access to user's privileges. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/sign%20in.png?token=AGNJ76FLKT5QGBS53X3O2EK5XQIWQ)|
 
-*As a < user role >, I want < goal > so that < reason >.*
+#### 2. Authenticated User
 
-
-**INVEST in good user stories**. 
-You may add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the [INVEST guidelines](https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/).
-
-**User interface mockups**.
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
+| **Identifier** | **Name** | **Priority** | **Description** | **Mockup**|                                                   
+| -------------- | -------- | ------------ | ------------------------- | --------------|
+| US101          | Profile page          |              | As an Authenticated User, I want to access my profile page, so that I can see my personal data.                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US102          | Edit Profile          |              | As an Authenticated User, I want to edit my profile, so I can keep it updated.                                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US103          | Log Out               |              | As an Authenticated User, I want to log out from the system, so that I can end my session.                                       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
+| US104          | Delete Account        |              | As an Authenticated User, I want to delete my personal account, so that I can delete all my personal data from the system.       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US105          | See Notifications     |              | As an Authenticated User, I want to see my notifications, so that I can know when someone with the same interests as me is near. | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US106          | Clear Notifications   |              | As an Authenticated User, I want to clear my notifications, so that I can keep them organized.                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US107          | View previous matches |              | As an Authenticated User, I want to view my previous matches, so that I can remember who I matched with.                         | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/matches.png?token=AGNJ76A7R7FMO2TWURRS42C5XQJ5O) |
+| US108          | See my conferences    |              | As an Authenticated User, I want to see my conferences, so that I can know which ones I attended.                                | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
+| US109          | Check my points       |              | As an Authenticated User, I want to check my points, so that I can see how many points I earned                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
+| US110          | Manage my points      |              | As an Authenticated User, I want to manage my points, so that I can trade them.                                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6) |
 
 **Acceptance tests**.
 For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
