@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/sign_in.dart';
+import 'package:test_project/sign_up.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -32,7 +34,13 @@ class HomePage extends StatelessWidget {
                   ButtonTheme(
                     minWidth: double.infinity,
                     child: MaterialButton(
-                      onPressed: () => {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+
+                        );
+                      },
                       textColor: Colors.white,
                       color: Colors.redAccent,
                       height: 50,
@@ -46,7 +54,13 @@ class HomePage extends StatelessWidget {
                   ButtonTheme(
                     minWidth: double.infinity,
                     child: MaterialButton(
-                      onPressed: () => {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                          MaterialPageRoute(builder: (context) => SignInPage()),
+
+                        );
+                      },
                       textColor: Colors.white,
                       color: Colors.redAccent,
                       height: 50,
