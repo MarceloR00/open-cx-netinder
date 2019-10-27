@@ -6,10 +6,40 @@ const express = require('express');
 const PORT = 8080;
 const HOST = '0.0.0.0';
 
+var data = {
+  users : [
+    {
+      "id": 1,
+      "name": "Mark Meehan",
+      "tags": [
+        "Backend",
+        "DevOps",
+      ],
+      "degree": "Software Engineering"    },
+
+    {
+      "id": 2,
+      "name": "Carlos Nova",
+      "tags": [
+        "Backend",
+        "DevOps",
+      ],
+      "degree": "Software Engineering"    }
+  ]
+}
+
+
+var result = data.users;
+
 // App
 const app = express();
+
 app.get('/', (req, res) => {
-  res.send('Hello world\n');
+  res.send("Root directory\n");
+});
+
+app.get('/users', (req, res) => {
+  res.send(result);
 });
 
 app.listen(PORT, HOST);
