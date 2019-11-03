@@ -1,13 +1,16 @@
 {
-  "name": "docker_web_app",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Node.js on Docker",
-  "author": "NeTinder",
+  "description": "",
   "main": "main.js",
-  "scripts": {
-    "start": "node main.js"
-  },
   "dependencies": {
-    "express": "^4.16.1"
-  }
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC"
 }
