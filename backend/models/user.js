@@ -26,8 +26,8 @@ const userSchema = mongoose.Schema({
     type: Number,
     min: 0
   },
-  matches: [mongoose.Schema.ObjectId],
-  eventsAttended: [{ type: mongoose.Schema.ObjectId, ref: 'Event' }]
+  matches: [String],
+  eventsAttended: [String]
 });
 
 module.exports = mongoose.model('User', userSchema);
