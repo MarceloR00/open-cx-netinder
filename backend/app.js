@@ -7,17 +7,27 @@ const OPTS = { useUnifiedTopology: true, useNewUrlParser: true };
 
 const express = require('express');
 const app = express();
-const usersRoute = require('./routes/posts/userPosts');
 const PORT = 8080;
 const HOST = '0.0.0.0';
 
-app.use('/posts/userPosts', usersRoute);
+const cors = require('cors');
+const routes = require('./routes');
 
-app.get('/', (req, res) => {
-  res.send("Root directory\n");
+// Connects app to a MongoDB database
+mongoose.connect(process.env.DB_CONNECTION, OPTS);
+
+mongoose.connection.on("connected", () => {
+  console.log("Connected to database");
 });
+mongoose.connection.on("error", (err) => {
+  console.err("Connection to database failed: ", err);
+})
 
-mongoose.connect(process.env.DB_CONNECTION, OPTS, () => console.log('Connected to DB.'));
+
+//  Connect all our routes to our application
+app.use(cors());
+app.use('/', routes);
+
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
