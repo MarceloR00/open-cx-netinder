@@ -1,8 +1,50 @@
+const tokenMiddleware =require('../../middleware/middleware');
 let Event = require('../../models/event');
 let User = require('../../models/user');
+import {generateJWTUser} from '../../utils/hash'
 
 const express = require('express');
 const router = express.Router();
+
+router.use(tokenMiddleware);
+
+//registerUser
+router.post('/register',async(req,res) =>{
+  try{
+    const user = new User({
+      username: req.body.username,
+      password: req.body.password,
+      age: req.body.age,
+      birthPlace: req.body.birthPlace
+    });
+    const savedPost = await user.save();
+    res.json(savedPost);
+  }
+  catch (err) {
+    res.json({ message: err })
+  }
+});
+
+router.post('/login',async(req,res) =>{
+  try{
+    const user = await User.findOne({username: new RegExp('^'+req.body.usernmae+'$', "i")}, function(err, user) {
+     if (err)
+     res.json({ message: "username does not exist" });
+     else if(confirmPassword(req.body.password,user.password)){
+      let token =generateJWTUser(user.username, user.age,user.birthPlace);
+      res.json({loginToken: token});
+     }
+     else{
+      res.json({ message: "wrong password" });
+     }
+
+    });
+  }
+  catch (err) {
+    res.json({ message: err })
+  }
+
+})
 
 // Gets all of the users
 router.get('/', async (req, res) => {

@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "1000:8080"
+    environment:
+      - SECRET=netinderesof
