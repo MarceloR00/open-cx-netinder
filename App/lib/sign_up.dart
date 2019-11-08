@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'ApiConnection.dart';
+
 class SignUpPage extends StatelessWidget {
+  TextEditingController firstNameController = new TextEditingController();
+  TextEditingController lastNameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +36,7 @@ class SignUpPage extends StatelessWidget {
                       height: 15, //ADICIONAR AQUI SIGN UP/SIGN IN
                     ),
                     TextField(
+                      controller: firstNameController,
                       autofocus: false,
                       obscureText: false,
                       keyboardType: TextInputType.text,
@@ -53,6 +61,7 @@ class SignUpPage extends StatelessWidget {
                       height: 15,
                     ),
                     TextField(
+                      controller: lastNameController,
                       autofocus: false,
                       obscureText: false,
                       keyboardType: TextInputType.text,
@@ -77,6 +86,7 @@ class SignUpPage extends StatelessWidget {
                       height: 15,
                     ),
                     TextField(
+                      controller: emailController,
                       autofocus: false,
                       obscureText: false,
                       keyboardType: TextInputType.text,
@@ -101,6 +111,7 @@ class SignUpPage extends StatelessWidget {
                       height: 15,
                     ),
                     TextField(
+                      controller: passwordController,
                       autofocus: false,
                       obscureText: true,
                       keyboardType: TextInputType.text,
@@ -151,7 +162,17 @@ class SignUpPage extends StatelessWidget {
                     ButtonTheme(
                       minWidth: double.infinity,
                       child: MaterialButton(
-                        onPressed: () => {},
+                        onPressed: () async {
+                          User newUser = new User(
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
+
+                          User p = await ApiConnection.createUser(body: newUser.toMap());
+                          print(p.email);
+                        },
                         textColor: Colors.white,
                         color: Colors.redAccent,
                         height: 50,
