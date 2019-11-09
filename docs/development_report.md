@@ -121,7 +121,13 @@ Regarding the frontend of our mobile app, we have created the sign-in/sign-up me
 This iteratoin was very important for us to test the technologies we proposed ourselved to use, and to cross out some of the initial planned ideas. We believe that the decisions explicited above will make our product a stronger and more laser-focused one. Now, we have a much clearer vision of what we want to do, and it all begins with the following iteration.
 
 #### Iteration 2
-This is our Trello board right at the end of the second iteration. We have now successfully created a database to store our users' and events' information; created a backend REST API to handle POST and GET requests to the database; and integrated both the backend and the database by using the mongoose framework. 
+IMPORTANT: The following updates have not yet been merged to the master branch. You can check the existing branches in the GitHub repository to view the code we are developing. We believe that code should only be pushed to master when it is fully baked, and this is the reason why it's maturing a bit more in those branches.
+
+This is our Trello board right at the end of the second iteration. 
+
+![iteration2](iteration2.png)
+
+We have now successfully created a database to store our users' and events' information; created a backend REST API to handle POST and GET requests to the database; and integrated both the backend and the database by using the mongoose framework. 
 
 Whilst the "Create API for users" and "Sign-in/sign-up" are still in the "In progress" list, they are mostly finished and just being a little bit more polished. Also, we still have some pull requests awaiting code review, but we have tested the code and it works and is integrated beautifully. The code reviews will be done very shortly.
 
@@ -135,7 +141,6 @@ You are also able to see that we have already planned our next sprint. We will b
 We would like to talk a bit more about the last topic in the previous list. As a team, we feel like we have designed a great backend application that is easily scalable and flexible enough to handle next year's conference @ FEUP perfectly well. As such, and after talking about it with professor Ademar, we will also be focusing our next sprint on creating an active admin page that will let administrators add, remove and execute other operations in the database. We will be doing this because we want our backend to be the one picked by the courses' teachers to serve as the skeleton to every other open-cx module. 
 
 It's a challenge we are very excited to take on, and we will be hard at work this week to make it a reality as soon as possible!
-![iteration2](iteration2.png)
 
 ### Domain model
 
