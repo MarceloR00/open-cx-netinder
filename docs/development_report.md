@@ -14,15 +14,15 @@ You can find here detailed information about the (sub)product, hereby mentioned 
 * Architecture and Design
   * [Logical architecture](#Logical-architecture)
   * [Physical architecture](#Physical-architecture)
-  * [Prototype](#Prmy
-* [Implementation](my
+  * [Prototype]
+* [Implementation]
 * [Test](#Test)
-* [Configuration anmyfiguration-and-change-management)
-* [Project managememy
+* [Configuration and change management]
+* [Project managememy]
 
-So far, contributiomyy the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, tmy
+So far, contributiomyy the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation...
 
-Please contact us! my
+Please contact us!
 
 Thank you!
 
@@ -60,7 +60,7 @@ And the more you network with others, the more prizes you win!
 
 ### Use case diagram 
 
-![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/docs/use_case_diagram.jpg?token=AGNJ76E5Y37536EOU4JSAYK5XQLDU)
+![](use_case_diagram.jpg)
 
 #### Pick tags
 * **Actor** - A person attending the conference
@@ -87,7 +87,7 @@ To be completed
 To be completed
 
 ### User stories
-We have a more up-to-date set of user stories in our Trello board, that we have made public so that you can watch our progress as development continues (https://trello.com/b/8qWwiWTX/netinder).
+We have made our Trello board public so that you can check the user stories and acceptance test scenarios more easily. You can also see how the project is progressing by checking the board, as you'll be able to see when new features are finished, awaiting code review, added to the backlog... (https://trello.com/b/8qWwiWTX/netinder).
 
 The board consists of user stories. Each one of them is assigned a priority as a label, and these priorities can assume one of four states: Critical, urgent, moderately important and nice to have. 
 
@@ -149,14 +149,6 @@ To better understand the context of the software system, it is very useful to ha
 ---
 
 ## Architecture and Design
-The architecture of a software system encompasses the set of key decisions about its overall organization. 
-
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
-
 Our project is composed by three main modules:
 * Mobile application
 * Server
