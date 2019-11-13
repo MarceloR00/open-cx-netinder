@@ -14,15 +14,15 @@ You can find here detailed information about the (sub)product, hereby mentioned 
 * Architecture and Design
   * [Logical architecture](#Logical-architecture)
   * [Physical architecture](#Physical-architecture)
-  * [Prototype](#Prototype)
-* [Implementation](#Implementation)
+  * [Prototype]
+* [Implementation]
 * [Test](#Test)
-* [Configuration and change management](#Configuration-and-change-management)
-* [Project management](#Project-management)
+* [Configuration and change management]
+* [Project managememy]
 
-So far, contributions are exclusively made by the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
+So far, contributiomyy the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation...
 
-Please contact us! 
+Please contact us!
 
 Thank you!
 
@@ -60,7 +60,7 @@ And the more you network with others, the more prizes you win!
 
 ### Use case diagram 
 
-![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/docs/use_case_diagram.jpg?token=AGNJ76E5Y37536EOU4JSAYK5XQLDU)
+![](use_case_diagram.jpg)
 
 #### Pick tags
 * **Actor** - A person attending the conference
@@ -87,7 +87,7 @@ To be completed
 To be completed
 
 ### User stories
-We have a more up-to-date set of user stories in our Trello board, that we have made public so that you can watch our progress as development continues (https://trello.com/b/8qWwiWTX/netinder).
+We have made our Trello board public so that you can check the user stories and acceptance test scenarios more easily. You can also see how the project is progressing by checking the board, as you'll be able to see when new features are finished, awaiting code review, added to the backlog... (https://trello.com/b/8qWwiWTX/netinder).
 
 The board consists of user stories. Each one of them is assigned a priority as a label, and these priorities can assume one of four states: Critical, urgent, moderately important and nice to have. 
 
@@ -105,111 +105,42 @@ Each one of the cards in our Trello board has a mockup as an attatchment. Be sur
 
 We are also assigning points to each of our stories as a way to measure the effort requires to implement each one of them. We'll be using the following set of fibonacci numbers while sizing a user story, from minimum to max effort: 1, 2, 3, 5, 8, 13, 21. 
 
-| **Identifier** | **Name**                                       | **Priority**          | **Description**                                                                                                           | **Mockup**                                                                                                                              |
-|----------------|------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| US101          | Pair microbit with app                         | Urgent                | As an Authenticated User, I want to access my profile page, so that I can see my personal data.                           |                                                                                                                                         |
-| US102          | Create sign-in/sign-up UI                      | Urgent                | As a user, I want to access the sign-in/sign-up menu, so that I can enter my login information                            | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
-| US103          | Store user information as JSON file            | Urgent                | As a user, I want to have my information stored so it can be exchanged                                                    |                                                                                                                                         |
-| US104          | Notify with microbit using sound and LED panel | Moderately importante | As an authenticated user, I want to have a microbit identifying me so that I can spot my match faster                     |                                                                                                                                         |
-| US105          | Sign-in/sign-up                                | Urgent                | As a visitor, I want to sign in/sign up, so that I can personalize my experience                                          | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
-| US106          | Logout                                         | Urgent                | As an Authenticated User, I want to logout from the system, so that I can end my session                                  | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
-| US107          | Sense potential match nearby                   | Urgent                | As a user, I want to know which users are around me, so that I can be matched with the ones with the same interests.      |                                                                                                                                         |
-| US108          | Update account info                            | Moderately important  | As a user, I want to know which users are around me, so that I can be matched with the ones with the same interests       | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
-| US109          | Notify match nearby                            | Moderately important  | As a user, I want to be notified so that I am alerted to the presence of a match nearby                                   |                                                                                                                                         |
-| US110          | Manage tags                                    | Moderately important  | As an authenticated user, I want to manage my tags so that I can be matched with other attendees                          |                                                                                                                                         |
-| US111          | Delete account                                 | Nice to have          | As an Authenticated User, I want to delete my personal account, so that I can delete all my personal data from the system | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
-| US112          | Manage points                                  | Nice to have          | As an Authenticated User, I want to manage and view my points, so that I can trade them                                   | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/profile.png?token=AGNJ76C4TFMABRZX5DUH5EK5XQJZ6)     |
-| US113          | View attended conferences' list                | Nice to have          | As a user, I want to see my conferences, so that I can know which ones I attended                                         | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/conferences.png?token=AGNJ76BDET7R7LN4ZXHXKKS5XQJ3K) |
-| US114          | View previous matches                          | Nice to have          | As an Authenticated User, I want to view my previous matches, so that I keep tabs with them                               | ![](https://raw.githubusercontent.com/softeng-feup/open-cx-netinder/master/mockups/matches.png?token=AGNJ76A7R7FMO2TWURRS42C5XQJ5O)     |
+#### Iteration 1
+In our first iteration, we stumbled across several problems.
 
-**Acceptance tests**.
-*US101*
-Participant uses his microbit to find a match:
-- Given that the participant needs to use his microbit 
-- When he wants to interact with it 
-- Then he needs to pair it with the app
+Firstly, we didn't find a stable and easy enough way to communicate with the microbit through bluetooth. We managed to pair it with a mobile phone, and signal when it is and isn't connected (by playing some sounds when it is paired and unpaired).
 
-*US102*
-User wants to add a tag:
-- Given that the user wants his information stored
-- When he is adding a new tag
-- Then he needs to sign up/sign in 
+To use the microbit as a bluetooth communications sender/receiver, we found out - after a lot of research - that we could not use microbit's library of bluetooth functions to do everything we needed: even sending a simple JSON file is not feasible due to architectural constraints. As such, we were left with two options:
+* **Use micropython to program the microbit**. This was impossible because the amount of RAM needed by micropython to run on the microbit makes it impossible for bluetooth communitations run at the same time. The microbit should definitely not be this micro when RAM size is concerned.
+* **Use C++ library provived by the University of Lancaster**. We discovered a rather obscure C++ library that makes it possible to program bluetooth interations on the microbit. Unfortunately (again), the documentation is rather poor, and from what we tested, it would demand a very considerable amount of time to properly understand it and implement the code.
 
-*US103*
-User matches with another one:
-- Given that a user is matched with another participant
-- When both of them are in close proximity
-- Then their personal information needs to be added to each user's history of matches
+We also came to the conclusion that the usage of the microbit would be rather redundant. We were planning on using it to signal when a match is nearby a user, and to display a code on its screen so that identification of both participants is easier. Considering the amount of work that the above solutions would take to make bluetooth communications possible, and considering that this functionality can be perfectly well implemented on our mobile app, we have decided to not use microbit in our project. The amount of time needed to accomplish the task of having real time bluetooth communications happening on the microbit was not worth it, considering that the same gains can be achieved with a lot less work using the mobile app and Android's already-integrated bluetooth functionality.
 
-*US104*
-User finds a match:
-- Given that the conference environment is crowded and congested
-- When the user is walking around the campus
-- Then he needs be easily identified (using sound and microbit LED panel)
+Regarding the frontend of our mobile app, we have created the sign-in/sign-up menu on the mobile app. We have also created a script that stores users' information as a JSON file.
 
-*US105*
-User wants to save his information:
-- Given that a user needs his information to be stored permanently
-- When he is participating in a conference
-- Then he needs to create a profile so that the information can be linked to him
+This iteratoin was very important for us to test the technologies we proposed ourselved to use, and to cross out some of the initial planned ideas. We believe that the decisions explicited above will make our product a stronger and more laser-focused one. Now, we have a much clearer vision of what we want to do, and it all begins with the following iteration.
 
-*US106*
-User won't be attending more conferences:
-- Given that a user might not be attending conferences anymore
-- When he leaves the current one
-- Then he must be able to logout from his account
+#### Iteration 2
+IMPORTANT: The following updates have not yet been merged to the master branch. You can check the existing branches in the GitHub repository to view the code we are developing. We believe that code should only be pushed to master when it is fully baked, and this is the reason why it's maturing a bit more in those branches.
 
-*US107*
-Match with user nearby:
-- Given that a potential match may be nearby:
-- When a user is in close proximity with others
-- Then he needs to sense nearby participants and check if a match can happen
+This is our Trello board right at the end of the second iteration. 
 
-*US108*
-User needs to change his email address:
-- Given that a user can be contacted by others through his email address
-- When he has been matched with other participants
-- Then he needs to alter it whenever he wants to
+![iteration2](iteration2.png)
 
-*US109*
-User finds a match:
-- Given that the conference grounds are crowded
-- When the participant is walking by
-- He needs to be called to attention whenever a match is nearby
+We have now successfully created a database to store our users' and events' information; created a backend REST API to handle POST and GET requests to the database; and integrated both the backend and the database by using the mongoose framework. 
 
-*US110*
-User has a new interest:
-- Given that a user can start linking a new knowledge area after a talk
-- When he is attending the conference
-- Then he needs to be able to add new tags as interests
+Whilst the "Create API for users" and "Sign-in/sign-up" are still in the "In progress" list, they are mostly finished and just being a little bit more polished. Also, we still have some pull requests awaiting code review, but we have tested the code and it works and is integrated beautifully. The code reviews will be done very shortly.
 
-*US111*
-Right to be forgotten:
-- Given that every EU citizen has the digital right to be forgotten
-- When he uses our app services
-- Then he needs to be able to completely remove his information from our app/servers.
+You are also able to see that we have already planned our next sprint. We will be tackling the following topics:
+* creation of a "sign-in/sign-up" menu for the mobile app;
+* addition pf a global navigation bar for the mobile app;
+* creation of a menu to check previous conferences attended by the user;
+* integrating each of the previous topics with the backend;
+* build an active admin page to handle the dabatase.
 
-*US112*
-Trade points for goodies:
-- Given that a user accumulates points the more matches he gets
-- When attending the conference
-- Then he needs to be able to exchange these points for goodies provided by the sponsor companies
+We would like to talk a bit more about the last topic in the previous list. As a team, we feel like we have designed a great backend application that is easily scalable and flexible enough to handle next year's conference @ FEUP perfectly well. As such, and after talking about it with professor Ademar, we will also be focusing our next sprint on creating an active admin page that will let administrators add, remove and execute other operations in the database. We will be doing this because we want our backend to be the one picked by the courses' teachers to serve as the skeleton to every other open-cx module. 
 
-*US113*
-Check accumulated points from past conferences:
-- Given that a user might want to check his points from past conferences
-- When he is logged in to the app
-- Then he must be able to see a list of events he attended previously, as well as the amount of points he has collected 
-
-*US114*
-Keep in touch with matches
-- Given that a user might want to talk to a participant he was matched with
-- When the conference is over/while the conference is occurring
-- Then he must be able to see a list of people he was matched with
-
-
-**Value and effort**.
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
+It's a challenge we are very excited to take on, and we will be hard at work this week to make it a reality as soon as possible!
 
 ### Domain model
 
@@ -218,13 +149,17 @@ To better understand the context of the software system, it is very useful to ha
 ---
 
 ## Architecture and Design
-The architecture of a software system encompasses the set of key decisions about its overall organization. 
+Our project is composed by three main modules:
+* Mobile application
+* Server
+* Database
 
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
+The **mobile app** is being developed in Flutter, and it currently targets Android devices. 
 
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them. 
+The **server** is written in NodeJS, with the core machine-to-machine communications being handled by Express, a web application framework designed for building web applications and APIs. We are connecting the backend to the database with Mongoose, which is an Object Data Modeling (ODM) library for MongoDB and Node.js - it manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
 
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+Finally, we also ship a MongoDB **datbase** to sync the user's and events' information with every device participating in the conference. We opted for MongoDB, which is a document database that provides us with great flexibility and scalability.
+
 
 ### Logical architecture
 The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
