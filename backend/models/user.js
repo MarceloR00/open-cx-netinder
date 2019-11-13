@@ -26,4 +26,4 @@ const userSchema = mongoose.Schema({
   eventsAttended: [String]
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = user = mongoose.model('User', userSchema);

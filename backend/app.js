@@ -14,6 +14,7 @@ const PORT = 8080;
 const HOST = '0.0.0.0';
 
 // Middlewares
+app.use('/admin', require('./admin'))
 app.use(bodyParser.json());
 app.use('/posts/users', usersRoute);
 app.use('/posts/events', eventsRoute);
