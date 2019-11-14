@@ -8,7 +8,7 @@ const single = require('./single');
 events.get('/', all);
 events.post('/', all);
 
-events.get('/:userId', single);
-events.post('/:userId', single);
+events.get('/:postId', single);
+events.post('/:postId', single);
 
 module.exports = events;

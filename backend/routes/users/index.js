@@ -8,7 +8,7 @@ const single = require('./single');
 users.get('/', all);
 users.post('/', all);
 
-users.get('/:userId', single);
-users.post('/:userId', single);
+users.get('/:postId', single);
+users.post('/:postId', single);
 
 module.exports = users;

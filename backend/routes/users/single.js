@@ -2,7 +2,7 @@ let User = require('../../models/user');
 
 const singleUser = require('express').Router();
 
-singleUser.get('/:userId', async (req, res) => {
+singleUser.get('/:postId', async (req, res) => {
 //   res.send("Get request on /users/id");
   try {
     const user = await User.findById(req.params.postId);
@@ -14,7 +14,7 @@ singleUser.get('/:userId', async (req, res) => {
 
 });
 
-singleUser.delete('/:userId', async (req, res) => {
+singleUser.delete('/:postId', async (req, res) => {
 //   res.send(req.params);
 
 try {
@@ -28,7 +28,7 @@ try {
 });
 
 
-singleUser.post('/:userId', async (req, res) => {
+singleUser.post('/:postId', async (req, res) => {
 //   res.send(req.params);
 
     const user = new User({

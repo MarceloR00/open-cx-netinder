@@ -2,11 +2,11 @@ let Event = require('../../models/event');
 
 const singleEvent = require('express').Router();
 
-singleEvent.get('/:eventId', async (req, res) => {
+singleEvent.get('/:postId', async (req, res) => {
   res.send("Get request on /events/id");
 });
 
-singleEvent.post('/:eventId', async (req, res) => {
+singleEvent.post('/:postId', async (req, res) => {
   res.send(req.params);
 });
 
