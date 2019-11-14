@@ -20,7 +20,7 @@ You can find here detailed information about the (sub)product, hereby mentioned 
 * [Configuration and change management]
 * [Project managememy]
 
-So far, contributiomyy the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation...
+So far, contribution the initial team, but we hope to open them to the community, in all areas and topics: requirements, technologies, development, experimentation...
 
 Please contact us!
 

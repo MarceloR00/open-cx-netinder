@@ -9,6 +9,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  email: {
+    type: String,
+    required: true
+  },
   age: {
     type: Number,
     min: 13,
@@ -22,8 +26,7 @@ const userSchema = mongoose.Schema({
     type: Number,
     min: 0
   },
-  matches: [String],
-  eventsAttended: [String]
+  matches: [String]
 });
 
 module.exports = user = mongoose.model('User', userSchema);

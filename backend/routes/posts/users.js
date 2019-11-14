@@ -1,4 +1,3 @@
-let Event = require('../../models/event');
 let User = require('../../models/user');
 
 const express = require('express');
