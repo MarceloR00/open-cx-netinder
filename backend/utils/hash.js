@@ -1,9 +1,7 @@
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-
-
-export const getHashedPassword = (password) =>{
+const getHashedPassword = (password) =>{
     
     return new Promise( async (resolve,reject)=>{
          await bcrypt.hash(password, 10, function(err, hash) {
@@ -16,7 +14,7 @@ export const getHashedPassword = (password) =>{
 
 }
 
-export const confirmPassword = (password,hashedPassword) => {
+const confirmPassword = (password,hashedPassword) => {
 
     return new Promise(async(resolve,reject) => {
 
@@ -27,13 +25,11 @@ export const confirmPassword = (password,hashedPassword) => {
             }
             else 
                 reject(false)
-
         })
-
     })
-
 }
-export const verifyJWTToken = (token) => {
+
+const verifyJWTToken = (token) => {
 
     return new Promise((res,rej) => {
 
@@ -43,24 +39,22 @@ export const verifyJWTToken = (token) => {
                 rej(err)
             else 
                 res(decoded)
-
         })
-
     })
-
 }
 
 
-export const generateJWTUser = (username, age, birthPlace) => {
+const generateJWTUser = (username, age, birthPlace) => {
 
     const payload = {
         username: username,
         age: age,
         birthPlace: birthPlace
     }
-
     return jwt.sign(payload,process.env.SECRET)
 }
 
-
-
+module.exports = getHashedPassword;
+module.exports = confirmPassword;
+module.exports = verifyJWTToken;
+module.exports = generateJWTUser;

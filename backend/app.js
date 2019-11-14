@@ -23,12 +23,14 @@ app.get('/', (req, res) => {
 });
 
 // Connects app to a MongoDB database
+console.log(process.env.DB_CONNECTION);
+console.log(OPTS);
 mongoose.connect(process.env.DB_CONNECTION, OPTS);
 mongoose.connection.on("connected", () => {
   console.log("Connected to database");
 });
 mongoose.connection.on("error", (err) => {
-  console.err("Connection to database failed: ", err);
+  console.log("Connection to database failed: ", err);
 })
 
 app.listen(PORT, HOST);
