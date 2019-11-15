@@ -164,8 +164,7 @@ class SignUpPage extends StatelessWidget {
                       child: MaterialButton(
                         onPressed: () async {
                           User newUser = new User(
-                            firstName: firstNameController.text,
-                            lastName: lastNameController.text,
+                            fullname: firstNameController.text + lastNameController.text,
                             email: emailController.text,
                             password: passwordController.text,
                           );
