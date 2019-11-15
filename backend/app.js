@@ -15,7 +15,7 @@ const questionsRoute = require('./routes/posts/questions');
 const speakersRoute = require('./routes/posts/speakers');
 const talksRoute = require('./routes/posts/talks');
 const cors = require('cors');
-const PORT = 8080;
+const PORT = 2222;
 const HOST = '0.0.0.0';
 
 // Middlewares
