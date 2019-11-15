@@ -7,9 +7,6 @@ const mongoose = require('mongoose');
 const OPTS = { useUnifiedTopology: true, useNewUrlParser: true };
 const express = require('express');
 const app = express();
-
-const routes = require('./routes');
-
 const usersRoute = require('./routes/posts/users');
 const eventsRoute = require('./routes/posts/events');
 const forumsRoute = require('./routes/posts/forums');
@@ -24,8 +21,6 @@ const HOST = '0.0.0.0';
 // Middlewares
 app.use('/admin', require('./admin'))
 app.use(bodyParser.json());
-
-app.use('/', routes);
 app.use('/posts/users', usersRoute);
 app.use('/posts/events', eventsRoute);
 app.use('/posts/forums', forumsRoute);
