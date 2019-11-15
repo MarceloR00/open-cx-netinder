@@ -41,14 +41,13 @@ router.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
     password: req.body.password,
+    email: req.body.email,
     age: req.body.age,
-    birthPlace: req.body.birthPlace,
     description: req.body.description,
     tags: req.body.tags,
     conferences: req.body.conferences,
     points: req.body.points,
     matches: req.body.matches,
-    eventsAttended: req.body.eventsAttended
   });
 
   try {
