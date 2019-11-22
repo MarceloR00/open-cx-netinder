@@ -163,14 +163,15 @@ class SignUpPage extends StatelessWidget {
                       minWidth: double.infinity,
                       child: MaterialButton(
                         onPressed: () async {
+
+                          //create the user
                           User newUser = new User(
                             fullname: firstNameController.text + lastNameController.text,
                             email: emailController.text,
                             password: passwordController.text,
                           );
 
-                          User p = await ApiConnection.createUser(body: newUser.toMap());
-                          print(p.email);
+                          User p = await ApiConnection.createUser(user: newUser.toMap());
                         },
                         textColor: Colors.white,
                         color: Colors.redAccent,

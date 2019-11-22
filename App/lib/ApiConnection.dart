@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'dart:core' as prefix0;
+import 'dart:core';
 import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class User {
   final String fullname;
@@ -16,6 +19,14 @@ class User {
     );
   }
 
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      fullname: map["fullname"],
+      email: map["email"],
+      password: map["password"],
+    );
+  }
+
   Map toMap() {
     var map = new Map<String,dynamic>();
     map["fullname"] = fullname;
@@ -27,20 +38,23 @@ class User {
 }
 
 class ApiConnection {
-  static final String userUrl = 'http://0.0.0.0:8080/users';
+  static final String userUrl = 'http://open-cx.herokuapp.com/Users';
 
-  static Future<User> createUser({Map body}) async {
-    return http.post(userUrl, body: body).then((http.Response response) {
-      final int statusCode = response.statusCode;
+  static Future<User> createUser({Map user}) async {
+    // Send the request
+    http.Response res = await http.post(userUrl , body: user);
 
-      /* TODO verify return code according to the api
-      if (statusCode < 200 || statusCode > 400 || json == null) {
-        print(statusCode);
-        throw new Exception("Error while fetching data");
-      }
-      */
+    //Verify statusCode
+    final int statusCode = res.statusCode;
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      throw new Exception("Error while fetching data");
+    }
 
-      return User.fromJson(json.decode(response.body));
-    });
+    //print the answer TODO remove later
+    String data = res.body;
+
+    User us = User.fromMap(user);
+
+    return us;
   }
 }
