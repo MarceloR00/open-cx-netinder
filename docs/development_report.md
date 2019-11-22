@@ -67,7 +67,7 @@ And the more you network with others, the more prizes you win!
 
 * **Description** - In order for a participant to be matched with others, their favourite topics need to be explicited (which assume the form of tags). When the tags are selected, more appropriate matches will be found and the user's interaction will be much more valuable.
 
-* **Preconditions and Postconditions** - The user needs to have signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
+* **Preconditions and Postconditions** - The user needs to be signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
 
 * **Normal Flow**
 
@@ -79,12 +79,46 @@ And the more you network with others, the more prizes you win!
     
     4 - The system now uses the tag to match the user with others that have picked this same tag
 
-* **Alternative Flows and Exceptions**. It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
+* **Alternative Flows and Exceptions** - It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
 
 #### View list of matches
-To be completed
+
+* **Actor** - A person attending the conference.
+
+* **Description** - In order for a participant to know to whom he was matched, he needs to have access to a page that shows him everyone who picked the same tags as him.
+
+* **Preconditions and Postconditions** - The user needs to be signed up to the app and be authenticated. After picking the tags, his matches should be visible in a page made for that. 
+
+* **Normal Flow**
+
+    1 - User inserts tags.
+
+    2 - The system calculates the matches based on the tags.
+
+    3 - The system shows the new matches and saves them.
+
+* **Alternative Flows and Exceptions** - It may happen that the user doesn't have any matches. In this case, no new matched would be shown in the page.
+
 #### Check/manage points and available discounts
-To be completed
+
+* **Actor** - A person attending the conference.
+
+* **Description** - The more active a participant is in our app, the more points he earns. For this, users will be able to check how many points thay have in ther personal page. These points can be traded in the conference sponsor's stand for discounts. 
+
+* **Preconditions and Postconditions** - The user needs to be signed up to the app and be authenticated. After picking the tags and being matched, he will start to earn points.
+
+* **Normal Flow**
+
+    1 - User is matched.
+
+    2 - User interacts with his matches.
+
+    3 - User earns points.
+
+    4 - User can trade points for discounts.
+
+* **Alternative Flows and Exceptions** - It may happen that the user doesn't have any points. In this case, he won't be able to trade his points for anything.
+
 
 ### User stories
 We have made our Trello board public so that you can check the user stories and acceptance test scenarios more easily. You can also see how the project is progressing by checking the board, as you'll be able to see when new features are finished, awaiting code review, added to the backlog... (https://trello.com/b/8qWwiWTX/netinder).
