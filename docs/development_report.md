@@ -152,6 +152,9 @@ There are some things that we are working on, but are not yet finished:
 
 Overall, we are very exited about this opportunity given to us by our professors, and we hope our work surpasses their expectations.
 
+![iteration3](iteration3.png)
+
+
 ### Domain model
 
 To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
