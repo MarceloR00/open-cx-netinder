@@ -143,7 +143,14 @@ We would like to talk a bit more about the last topic in the previous list. As a
 It's a challenge we are very excited to take on, and we will be hard at work this week to make it a reality as soon as possible!
 
 #### Iteration 3
-This week our work on the backend was shared with every other group in the main open-cx repository. For that reason, our main focus was to continue the development of our API and database, so that all the groups would have something to start with. Specifically, we added some new models, requested by other groups, to our databse, as well as some new endpoints for fetching and adding the respective information. A general refactor of our whole backend solution was also made, though it has not yet been merged into the master branch. We expect it to be done in the first couple if days of Sprint 3. Besides that, we wish to have our server hosted through Heroku, though we are looking into different options, evaluating them and looking for the best. We also aim to have this task completed by the starting days of Sprint 3. Overall, we are very exited about this opportunity given to us by our professors, and we hope our work surpasses their expectations.
+During this iteration, our work on the backend was shared with every other group in the main open-cx repository. For that reason, our main focus was to continue the development of our API and database, so that all the groups would have something to start with. Specifically, we added some new models, requested by other groups, to our databse, as well as some new endpoints for fetching and adding the respective information. A general refactor of our whole backend solution was also made. Besides that, we have successfully deployed our backend to Heroku, so from now one every ESOF student can interact with the backend and make requests at will. We have also finished integrating the backend with Docker - the version currently available to every student is running on a Docker container.
+There are some things that we are working on, but are not yet finished:
+- We are implementing an authentication mecanism into the API, so that only users who are registered in the open-cx applications can access the data (and only data that they have permissions to access to).
+- Another feature we are dabbling with is the ability to run a MongoDB instance locally. This would speed up development for every student.
+- We are also in the middle of merging our documentation with the **openapiswagger** framework. Good documentation is an essential part of every software project, and we know that. This will help every open-cx developer understanding better how our systems work.
+- We are also thinking of switching the active-admin interface to another one, because the current one doesn't support adding objects in the web interface. We are still evaluating this matter, but expect to make a decision in the next couple of days.
+
+Overall, we are very exited about this opportunity given to us by our professors, and we hope our work surpasses their expectations.
 
 ### Domain model
 
@@ -163,6 +170,9 @@ The **server** is written in NodeJS, with the core machine-to-machine communicat
 
 Finally, we also ship a MongoDB **datbase** to sync the user's and events' information with every device participating in the conference. We opted for MongoDB, which is a document database that provides us with great flexibility and scalability.
 
+We faced some problems during the intial architecture conception, mainly concerning the database and API connection. 
+1. We had difficulties trying to connect our Flutter frontend app with the server. What was happening was that we had our backend running locally on localhost, and we weren't able to make requests to the API inside the frontend, because the mobile phone and the PC running the backend had one different localhost each. As such, we had to wait for the backend to be deployed to be able to communicate between both. 
+2. Creating the database was also a challenge. We are using MongoDB, and because we had never worked with a NoSQL database before, we had some doubts about how to correctly display and distribute the data across multiple schemas. With some more experience and hard work, we were able to overcome this issue.
 
 ### Logical architecture
 The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
