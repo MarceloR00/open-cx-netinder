@@ -241,17 +241,20 @@ class SignUpFormState extends State<SignUpPageForm> {
                   }
                   else {
                     //create the user
-                    User newUser = new User(
+                    UserRegInfo newUser = new UserRegInfo(
                       fullname: firstNameController.text + lastNameController.text,
                       email: emailController.text,
                       password: passwordController.text,
                     );
 
                     try {
-                      User p = await ApiConnection.registerUser(user: newUser.toMap());
+                      UserRegInfo p = await ApiConnection.registerUser(userInfo: newUser.toMap());
                     }
-                    catch(e) {
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error conecting to servers")));
+                    on ConnectionException catch(e) {
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error)));
+                    }
+                    catch (e) {
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Unknown error ocurred")));
                     }
                   }
                 },
