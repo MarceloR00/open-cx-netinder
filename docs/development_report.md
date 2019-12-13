@@ -233,14 +233,12 @@ It's a challenge we are very excited to take on, and we will be hard at work thi
 
 #### Iteration 3
 
-<<<<<<< HEAD
 During this iteration, our work on the backend was shared with every other group in the main open-cx repository. For that reason, our main focus was to continue the development of our API and database, so that all the groups would have something to start with. Specifically, we added some new models, requested by other groups, to our databse, as well as some new endpoints for fetching and adding the respective information. A general refactor of our whole backend solution was also made. Besides that, we have successfully deployed our backend to Heroku, so from now one every ESOF student can interact with the backend and make requests at will. We have also finished integrating the backend with Docker - the version currently available to every student is running on a Docker container.
 There are some things that we are working on, but are not yet finished:
 - We are implementing an authentication mecanism into the API, so that only users who are registered in the open-cx applications can access the data (and only data that they have permissions to access to).
 - Another feature we are dabbling with is the ability to run a MongoDB instance locally. This would speed up development for every student.
 - We are also in the middle of merging our documentation with the **openapiswagger** framework. Good documentation is an essential part of every software project, and we know that. This will help every open-cx developer understanding better how our systems work.
 - We are also thinking of switching the active-admin interface to another one, because the current one doesn't support adding objects in the web interface. We are still evaluating this matter, but expect to make a decision in the next couple of days.
-=======
 This is our Trello board right at the end of the second iteration. 
 
 ![iteration3](iteration3.png)
@@ -249,7 +247,6 @@ This is our Trello board right at the end of the second iteration.
 ### Domain model
 
 To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
->>>>>>> iteration4_docs
 
 ![iteration3](iteration3.png)
 
