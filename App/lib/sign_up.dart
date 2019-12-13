@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'email_validation.dart';
 
 import 'ApiConnection.dart';
 
@@ -135,6 +136,9 @@ class SignUpFormState extends State<SignUpPageForm> {
                 if (value.isEmpty) {
                   return "Please insert an Email";
                 }
+                else if (!validate_email(value)) {
+                  return "Please insert a valid email";
+                }
 
                 return null;
               },
@@ -233,7 +237,7 @@ class SignUpFormState extends State<SignUpPageForm> {
               child: MaterialButton(
                 onPressed: () async {
                   if (!_signUpKey.currentState.validate())  {
-                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('Some error ocurred'),));
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('Please insert valid information'),));
                   }
                   else {
                     //create the user
@@ -243,7 +247,12 @@ class SignUpFormState extends State<SignUpPageForm> {
                       password: passwordController.text,
                     );
 
-                    User p = await ApiConnection.createUser(user: newUser.toMap());
+                    try {
+                      User p = await ApiConnection.registerUser(user: newUser.toMap());
+                    }
+                    catch(e) {
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error conecting to servers")));
+                    }
                   }
                 },
                 textColor: Colors.white,

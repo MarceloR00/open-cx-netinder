@@ -40,7 +40,7 @@ class User {
 class ApiConnection {
   static final String userUrl = 'http://open-cx.herokuapp.com/Users';
 
-  static Future<User> createUser({Map user}) async {
+  static Future<User> registerUser({Map user}) async {
     // Send the request
     http.Response res = await http.post(userUrl , body: user);
 
