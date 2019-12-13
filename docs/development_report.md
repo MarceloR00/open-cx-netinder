@@ -145,6 +145,11 @@ It's a challenge we are very excited to take on, and we will be hard at work thi
 #### Iteration 3
 This week our work on the backend was shared with every other group in the main open-cx repository. For that reason, our main focus was to continue the development of our API and database, so that all the groups would have something to start with. Specifically, we added some new models, requested by other groups, to our databse, as well as some new endpoints for fetching and adding the respective information. A general refactor of our whole backend solution was also made, though it has not yet been merged into the master branch. We expect it to be done in the first couple if days of Sprint 3. Besides that, we wish to have our server hosted through Heroku, though we are looking into different options, evaluating them and looking for the best. We also aim to have this task completed by the starting days of Sprint 3. Overall, we are very exited about this opportunity given to us by our professors, and we hope our work surpasses their expectations.
 
+This is our Trello board right at the end of the second iteration. 
+
+![iteration3](iteration3.png)
+
+
 ### Domain model
 
 To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
