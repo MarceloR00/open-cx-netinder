@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:NeTinder/ApiConnection.dart';
 
 
 class TagManagement {
@@ -35,27 +36,27 @@ class TagManagement {
   }
 }
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => ProfileState();
+}
+
+class ProfileState extends State<Profile> {
+  Future<User> user = ApiConnection.getUserInformation("some user");
+
   @override
   Widget build(BuildContext context) {
-
-    //ACEDER À BASE DE DADOS EM CADA UMA DAS SEGUINTES
-    final String _Name = "Test Name";
-    final String _Email = "Test Email";
-    final String _Phone = "Test Phone";
-    final List _Tags = ["Tag1", "Tag2", "Tag3", "Tag4"];
-    final int _Points = 10;
+    String _Phone = "Not Found";
+    List _Tags = ["Tag1", "Tag2", "Tag3", "Tag4"];
+    int _Points = 0;
 
     TagManagement tagControl = TagManagement(_Tags.length, _Tags);
-    return Scaffold(
 
+    return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-
-
             children: <Widget>[
-
               Container(
                 child: Row(
                   children: <Widget>[
@@ -115,16 +116,6 @@ class Profile extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                ),
-              ),
-
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
                       width: 25,
                       height: 2,
                     ),
@@ -138,34 +129,46 @@ class Profile extends StatelessWidget {
                     ),
 
                     SizedBox(
-                      width: 30,
+                      width: 33,
                       height: 2,
                     ),
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 105),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 106.5),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            //INSERIR DA BASE DE DADOS
-                            _Name,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black87,
-
-                            ),
-                          ),
+                          FutureBuilder<User>(
+                            future: user,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  snapshot.data.fullname,
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black87,
+                                  ),
+                                );
+                              }
+                              else if (snapshot.hasError) {
+                                return Text(
+                                  "Not Found",
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black87,
+                                  ),
+                                );
+                              }
+                              else {
+                                return CircularProgressIndicator();
+                              }
+                            },
+                          )
                         ],
                       ),
                     ),
-
-
-
-
                   ],
                 ),
-
               ),
 
               SizedBox(
@@ -199,19 +202,35 @@ class Profile extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 106.5),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            //INSERIR DA BASE DE DADOS
-                            _Email,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black87,
-
-                            ),
-                          ),
+                          FutureBuilder<User>(
+                            future: user,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  snapshot.data.email,
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black87,
+                                  ),
+                                );
+                              }
+                              else if (snapshot.hasError) {
+                                return Text(
+                                  "Not Found",
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black87,
+                                  ),
+                                );
+                              }
+                              else {
+                                return CircularProgressIndicator();
+                              }
+                            },
+                          )
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -220,7 +239,6 @@ class Profile extends StatelessWidget {
                 width: 10,
                 height: 20,
               ),
-
 
               Container(
                 child: Row(
@@ -254,13 +272,11 @@ class Profile extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.black87,
-
                             ),
                           ),
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -290,181 +306,11 @@ class Profile extends StatelessWidget {
                       width: 38,
                       height: 2,
                     ),
-/*
-                    tagControl.getElem() >= 3
-                        ? Container(
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            color: Colors.blueGrey,
-                            padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 28),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  //INSERIR DA BASE DE DADOS
-                                  _Tags.elementAt(tagControl.getIndex()),
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black87,
 
-                                  ),
-                                ),
-
-
-                              ],
-
-                            ),
-
-                          ),
-
-
-                          SizedBox(
-                            width: 5,
-                            height: 2,
-                          ),
-
-                          Container(
-                            color: Colors.blueGrey,
-                            padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 28),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  //INSERIR DA BASE DE DADOS
-                                  _Tags.elementAt(tagControl.getIndex()),
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black87,
-
-                                  ),
-                                ),
-                                //tagControl.incIndex(),
-                                //tagControl.reduceElem(),
-
-
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(
-                            width: 5,
-                            height: 2,
-                          ),
-
-                          Container(
-                            color: Colors.blueGrey,
-                            padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 28),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  //INSERIR DA BASE DE DADOS
-                                  _Tags.elementAt(tagControl.getIndex()),
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black87,
-
-                                  ),
-                                ),
-                                //tagControl.incIndex(),
-                                //tagControl.reduceElem(),
-
-                              ],
-                            ),
-                          ),
-
-
-
-                        ],
-                      ),
-                    )
-
-                        : tagControl.getElem() == 2
-                        ? Container(
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            color: Colors.blueGrey,
-                            padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 28),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  //INSERIR DA BASE DE DADOS
-                                  _Tags.elementAt(tagControl.getIndex()),
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black87,
-
-                                  ),
-                                ),
-                                //tagControl.incIndex(),
-                                //tagControl.reduceElem(),
-
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(
-                            width: 5,
-                            height: 2,
-                          ),
-
-                          Container(
-                            color: Colors.blueGrey,
-                            padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 28),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  //INSERIR DA BASE DE DADOS
-                                  _Tags.elementAt(tagControl.getIndex()),
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black87,
-
-                                  ),
-                                ),
-                                //tagControl.incIndex(),
-                                //tagControl.reduceElem(),
-
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-
-                    )
-
-
-
-                        : Container(
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            color: Colors.blueGrey,
-                            padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 28),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  //INSERIR DA BASE DE DADOS
-                                  _Tags.elementAt(tagControl.getIndex()),
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black87,
-
-                                  ),
-                                ),
-                                //tagControl.incIndex(),
-                                //tagControl.reduceElem(),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-*/
                     Expanded(
                       child: Container(
                         height: 200,
-                        
+
                         child: GridView.count(
                           crossAxisCount: 3,
                           children: _Tags.map((value) {
@@ -479,8 +325,6 @@ class Profile extends StatelessWidget {
                         ),
                       ),
                     ),
-
-
                   ],
                 ),
               ),
@@ -533,7 +377,6 @@ class Profile extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.black87,
-
                       ),
                     ),
 
@@ -557,13 +400,7 @@ class Profile extends StatelessWidget {
                         "Manage them!",
                         style: TextStyle(fontSize: 15.0),
                       ),
-
                     ),
-
-
-
-
-
                   ],
                 ),
               ),
@@ -580,27 +417,26 @@ class Profile extends StatelessWidget {
                       width:  40,
                     ),
 
-                ButtonTheme(
-                  minWidth: 20,
-                  height: 40,
+                    ButtonTheme(
+                      minWidth: 20,
+                      height: 40,
 
-                    child: RaisedButton(
-                      color: Colors.yellowAccent,
-                      textColor: Colors.white,
-                      disabledColor: Color(0xffebcccc),
-                      disabledTextColor: Color(0xffa94442),
-                      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-                      splashColor: Colors.blueAccent,
+                      child: RaisedButton(
+                        color: Colors.yellowAccent,
+                        textColor: Colors.white,
+                        disabledColor: Color(0xffebcccc),
+                        disabledTextColor: Color(0xffa94442),
+                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+                        splashColor: Colors.blueAccent,
 
-                      //onPressed: (),
+                        //onPressed: (),
 
-                      child: Text(
-                        "Delete my account",
-                        style: TextStyle(fontSize: 15.0),
+                        child: Text(
+                          "Delete my account",
+                          style: TextStyle(fontSize: 15.0),
+                        ),
                       ),
-
                     ),
-                ),
 
                     SizedBox(
                       height: 2,
@@ -611,7 +447,6 @@ class Profile extends StatelessWidget {
                     ButtonTheme(
                       minWidth: 20,
                       height: 40,
-
                       child:  RaisedButton(
                         color: Colors.yellowAccent,
                         textColor: Colors.white,
@@ -626,9 +461,7 @@ class Profile extends StatelessWidget {
                           style: TextStyle(fontSize: 15.0),
                         ),
                       ),
-
                     )
-
                   ],
                 ),
               ),
@@ -636,24 +469,10 @@ class Profile extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-
-
-
-
-
-
-
-
-
-
             ],
           ),
-
         ),
-
       ),
-
     );
   }
-
 }
