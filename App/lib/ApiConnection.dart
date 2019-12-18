@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:core';
-import 'dart:core' as prefix0;
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -16,7 +15,7 @@ class UserRegInfo {
 
   UserRegInfo({this.fullname, this.email, this.password});
 
-  factory UserRegInfo.fromJson(Map<String, dynamic> json) {
+  factory UserRegInfo.fromJson(Map<String, String> json) {
     return UserRegInfo(
       fullname : json['fullname'],
       email : json['email'],
@@ -24,19 +23,19 @@ class UserRegInfo {
     );
   }
 
-  factory UserRegInfo.fromMap(Map<String, dynamic> map) {
+  factory UserRegInfo.fromMap(Map<String, String> map) {
     return UserRegInfo(
-      fullname: map["fullname"],
-      email: map["email"],
-      password: map["password"],
+      fullname: map['fullname'],
+      email: map['email'],
+      password: map['password'],
     );
   }
 
   Map toMap() {
-    var map = new Map<String,dynamic>();
-    map["fullname"] = fullname;
-    map["email"] = email;
-    map["password"] = password;
+    var map = new Map<String,String>();
+    map['fullname'] = fullname;
+    map['email'] = email;
+    map['password'] = password;
 
     return map;
   }
@@ -80,19 +79,27 @@ class User {
 }
 
 class ApiConnection {
-  static final String userUrl = 'http://open-cx-server.herokuapp.com/users';
+  static final String userUrl = 'https://tranquil-springs-58074.herokuapp.com/users/register';
+  static final String loginUrl = 'https://tranquil-springs-58074.herokuapp.com/users/login';
 
-  static Future<UserRegInfo> registerUser({Map userInfo}) async {
+  static Future<UserRegInfo> registerUser({Map userRegisterInfo}) async {
     // Send the request
-    http.Response res = await http.post(userUrl , body: userInfo);
+
+    http.Response res = await http.post(userUrl ,headers: {"Content-Type" : "application/json"}, body: json.encode( userRegisterInfo));
 
     //Verify statusCode
     final int statusCode = res.statusCode;
+
+    print(statusCode);
+    print(res.body);
+
     if (statusCode < 200 || statusCode > 400 || json == null) {
+      print(statusCode);
+      print(res.body);
       throw new ConnectionException("Error while fetching data");
     }
 
-    UserRegInfo us = UserRegInfo.fromMap(userInfo);
+    UserRegInfo us = UserRegInfo.fromMap(userRegisterInfo);
 
     return us;
   }
@@ -115,5 +122,20 @@ class ApiConnection {
     }
     
     return User.fromJson(jsonDecode(res.body));
+  }
+
+  static Future<String> loginUser({Map userLoginInfo}) async {
+    //Send the request
+    http.Response res = await http.post(loginUrl, body: userLoginInfo);
+
+    //Verify statusCode
+    final int statusCode = res.statusCode;
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      throw new ConnectionException(res.body);
+    }
+
+    String authToken = res.headers['Auth-Token'];
+
+    return authToken;
   }
 }
