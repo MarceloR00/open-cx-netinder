@@ -109,23 +109,7 @@ class ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: FittedBox(
-                        child: Image.asset('docs/user.jpg'),
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
+              
               Container(
                 child: Row(
                   children: <Widget>[
