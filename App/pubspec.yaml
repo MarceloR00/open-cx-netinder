@@ -45,6 +45,7 @@ flutter:
     - docs/anamartins.png
     - docs/logo.jpg
     - docs/talkabit.png
+    - docs/user.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
