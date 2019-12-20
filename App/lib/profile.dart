@@ -149,7 +149,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 106.5),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 100),
                       child: Column(
                         children: <Widget>[
                           FutureBuilder<User>(
@@ -213,7 +213,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 106.5),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 100),
                       child: Column(
                         children: <Widget>[
                           FutureBuilder<User>(
@@ -277,7 +277,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 104),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 100),
                       child: Column(
                         children: <Widget>[
                           Text(
