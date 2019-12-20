@@ -112,22 +112,6 @@ class ProfileState extends State<Profile> {
 
               Container(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: FittedBox(
-                        child: Image.asset('docs/user.jpg'),
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Container(
-                child: Row(
                   children: <Widget>[
                     SizedBox(
                       width: 25,
@@ -149,7 +133,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 106.5),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
                           FutureBuilder<User>(
@@ -213,7 +197,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 106.5),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
                           FutureBuilder<User>(
@@ -277,7 +261,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 104),
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
                           Text(
