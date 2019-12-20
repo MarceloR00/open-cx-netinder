@@ -1,3 +1,5 @@
+import 'package:NeTinder/ApiConnection.dart';
+import 'package:NeTinder/profile.dart';
 import 'package:flutter/material.dart';
 import 'email_validation.dart';
 
@@ -129,7 +131,15 @@ class SignInFormState extends State<SignInPageForm> {
                   Scaffold.of(context).showSnackBar(SnackBar(content: Text("Please insert valid information"),));
                 }
                 else {
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Text("Login PlaceHolder"),));
+                  //Create the login information
+                  UserLoginInfo info = new UserLoginInfo(email: emailController.text, password: passwordController.text);
+
+                  Future<UserAuth> auth = ApiConnection.loginUser(userLoginInfo: info.toMap());
+                  auth.then((realAuth) { //Execute when future is complete
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Profile(auth: realAuth)));})
+                      .catchError((e)  => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error))),
+                        test: (e) => e is ConnectionException)
+                      .catchError((e) => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.toString()))));
                 }
               },
               textColor: Colors.white,
@@ -143,5 +153,4 @@ class SignInFormState extends State<SignInPageForm> {
       ),
     );
   }
-
 }

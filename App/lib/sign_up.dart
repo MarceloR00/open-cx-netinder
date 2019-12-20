@@ -1,3 +1,4 @@
+import 'package:NeTinder/profile.dart';
 import 'package:flutter/material.dart';
 import 'email_validation.dart';
 
@@ -241,18 +242,31 @@ class SignUpFormState extends State<SignUpPageForm> {
                   }
                   else {
                     //create the user
-                    User newUser = new User(
-                      fullname: firstNameController.text + lastNameController.text,
+                    UserRegInfo newUser = new UserRegInfo(
+                      fullname: firstNameController.text + ' ' + lastNameController.text,
                       email: emailController.text,
                       password: passwordController.text,
                     );
 
                     try {
-                      User p = await ApiConnection.registerUser(user: newUser.toMap());
+                      await ApiConnection.registerUser(userRegisterInfo: newUser.toMap());
                     }
-                    catch(e) {
-                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error conecting to servers")));
+                    on ConnectionException catch(e) {
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error)));
                     }
+                    catch (e) {
+                      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Unknown error ocurred")));
+                    }
+
+                    //If the user was successfully registered login and go to profile
+                    UserLoginInfo info = new UserLoginInfo(email: emailController.text, password: passwordController.text);
+
+                    Future<UserAuth> auth = ApiConnection.loginUser(userLoginInfo: info.toMap());
+                    auth.then((realAuth) {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Profile(auth: realAuth,)));})
+                        .catchError((e)  => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error))),
+                          test: (e) => e is ConnectionException)
+                        .catchError((e) => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.toString()))));
                   }
                 },
                 textColor: Colors.white,

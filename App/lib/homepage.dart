@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/sign_in.dart';
-import 'package:test_project/sign_up.dart';
+import 'package:NeTinder/sign_in.dart';
+import 'package:NeTinder/sign_up.dart';
 
 class HomePage extends StatelessWidget {
   @override

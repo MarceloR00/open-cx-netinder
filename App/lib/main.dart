@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:NeTinder/profile.dart';
 import 'homepage.dart';
 
 void main() => runApp(MyApp());
