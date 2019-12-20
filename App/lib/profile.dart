@@ -61,7 +61,7 @@ class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     String _Phone = "Not Found";
-    List _Tags = ["Tag1", "Tag2", "Tag3", "Tag4"];
+    List _Tags = [];
     int _Points = 0;
 
     TagManagement tagControl = TagManagement(_Tags.length, _Tags);
@@ -325,18 +325,43 @@ class ProfileState extends State<Profile> {
                       child: Container(
                         height: 200,
 
-                        child: GridView.count(
-                          crossAxisCount: 3,
-                          children: _Tags.map((value) {
-                            return Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),),
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
+                        child: FutureBuilder<User> (
+                          future: user,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.data.tags.length == 0) {
+                                return Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black)
+                                  ),
+                                  child: Text("You have no tags!"),
+                                );
+                              }
+                              else {
+                                return GridView.count(
+                                  crossAxisCount: 3,
+                                  children: snapshot.data.tags.map((value) {
+                                    return Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black),),
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                );
+                              }
+                            }
+                            else if (snapshot.hasError) {
+                              return new Text("Could not get Tags!");
+                            }
+                            else {
+                              return CircularProgressIndicator();
+                            }
+                          },
+                        )
                       ),
                     ),
                   ],

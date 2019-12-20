@@ -263,10 +263,12 @@ class SignUpFormState extends State<SignUpPageForm> {
 
                     Future<UserAuth> auth = ApiConnection.loginUser(userLoginInfo: info.toMap());
                     auth.then((realAuth) {
+                      Navigator.pop(context);
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Profile(auth: realAuth,)));})
                         .catchError((e)  => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error))),
                           test: (e) => e is ConnectionException)
                         .catchError((e) => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.toString()))));
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text("Registering User, please wait")));
                   }
                 },
                 textColor: Colors.white,

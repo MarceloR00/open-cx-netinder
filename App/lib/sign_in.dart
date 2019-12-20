@@ -101,7 +101,7 @@ class SignInFormState extends State<SignInPageForm> {
               return null;
             },
             autofocus: false,
-            obscureText: false,
+            obscureText: true,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               labelText: "Password",
@@ -136,10 +136,13 @@ class SignInFormState extends State<SignInPageForm> {
 
                   Future<UserAuth> auth = ApiConnection.loginUser(userLoginInfo: info.toMap());
                   auth.then((realAuth) { //Execute when future is complete
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Profile(auth: realAuth)));})
+                    Navigator.pop(context);
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Profile(auth: realAuth)));
+                  })
                       .catchError((e)  => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error))),
                         test: (e) => e is ConnectionException)
                       .catchError((e) => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.toString()))));
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Text("Logging In, please wait")));
                 }
               },
               textColor: Colors.white,
