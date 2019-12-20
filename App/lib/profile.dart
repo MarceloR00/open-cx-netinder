@@ -37,12 +37,26 @@ class TagManagement {
 }
 
 class Profile extends StatefulWidget {
+  final UserAuth auth;
+
+  const Profile({Key key, this.auth}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() => ProfileState();
+  State<StatefulWidget> createState() => ProfileState(auth);
 }
 
 class ProfileState extends State<Profile> {
-  Future<User> user = ApiConnection.getUserInformation("some user");
+  final UserAuth auth;
+  Future<User> user;
+
+  ProfileState(this.auth);
+
+  @override
+  void initState() {
+    super.initState();
+
+    user = ApiConnection.getUserInformation(auth);
+  }
 
   @override
   Widget build(BuildContext context) {
