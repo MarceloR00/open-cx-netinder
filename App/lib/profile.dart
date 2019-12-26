@@ -1,3 +1,5 @@
+import 'package:NeTinder/addTag.dart';
+import 'package:NeTinder/matches.dart';
 import 'package:flutter/material.dart';
 import 'package:NeTinder/ApiConnection.dart';
 
@@ -67,6 +69,10 @@ class ProfileState extends State<Profile> {
     TagManagement tagControl = TagManagement(_Tags.length, _Tags);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff987d4d),
+        title: Text("My Profile"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -81,6 +87,7 @@ class ProfileState extends State<Profile> {
                 ),
               ),
 
+              /*
               Container(
                 child: Row(
                   children: <Widget>[
@@ -100,6 +107,8 @@ class ProfileState extends State<Profile> {
                 ),
               ),
 
+
+
               Container(
                 child: Row(
                   children: <Widget>[
@@ -109,6 +118,8 @@ class ProfileState extends State<Profile> {
                   ],
                 ),
               ),
+
+               */
 
               Container(
                 child: Row(
@@ -133,6 +144,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
+                      width: 2 * MediaQuery.of(context).copyWith().size.width/3,
                       padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
@@ -197,6 +209,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
+                      width: 2 * MediaQuery.of(context).copyWith().size.width/3,
                       padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
@@ -261,6 +274,7 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
+                      width: 2 * MediaQuery.of(context).copyWith().size.width/3,
                       padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
@@ -301,13 +315,15 @@ class ProfileState extends State<Profile> {
                     ),
 
                     SizedBox(
-                      width: 38,
+                      width: 25,
                       height: 2,
                     ),
 
                     Expanded(
                       child: Container(
                         height: 200,
+                        margin: EdgeInsets.all(0),
+                        padding: EdgeInsets.all(0),
 
                         child: FutureBuilder<User> (
                           future: user,
@@ -318,9 +334,20 @@ class ProfileState extends State<Profile> {
                                   alignment: Alignment.center,
                                   margin: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black)
                                   ),
-                                  child: Text("You have no tags!"),
+                                  child: ButtonTheme(
+                                    minWidth: 2 * MediaQuery.of(context).copyWith().size.width/3,
+                                    child: RaisedButton (
+                                      color: Color(0xfffaf2cc),
+                                      textColor: Color(0xff987d4d),
+                                      padding: EdgeInsets.all(8.0),
+                                      splashColor: Colors.blueAccent,
+                                      child: Text("Add tags!"),
+                                      onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => AddTag()));
+                                      },
+                                ),
+                                  ),
                                 );
                               }
                               else {
@@ -409,18 +436,20 @@ class ProfileState extends State<Profile> {
                     ),
 
                     RaisedButton(
-                      color: Colors.yellowAccent,
-                      textColor: Colors.white,
+                      color: Color(0xfffaf2cc),
+                      textColor: Color(0xff987d4d),
                       disabledColor: Color(0xfffaf2cc),
                       //disabledTextColor: Color(0xffff8c1a),
                       disabledTextColor: Color(0xff987d4d),
                       padding: EdgeInsets.all(8.0),
                       splashColor: Colors.blueAccent,
 
-                      //onPressed: (),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Matches() ));
+                      },
 
                       child: Text(
-                        "Manage them!",
+                        "Get Some!",
                         style: TextStyle(fontSize: 15.0),
                       ),
                     ),

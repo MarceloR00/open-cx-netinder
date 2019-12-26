@@ -42,7 +42,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - docs/anamartins.png
+    - docs/beatrizcardoso.png
     - docs/logo.jpg
     - docs/talkabit.png
     - docs/user.jpg

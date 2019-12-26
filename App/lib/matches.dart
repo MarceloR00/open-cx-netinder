@@ -39,15 +39,6 @@ class Matches extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List Tags = ["Tag1", "Tag2", "Tag3", "Tag4", "Tag5"];
-    final List Matches = [
-      "Match1",
-      "Match2",
-      "Match3",
-      "Match4",
-      "Match5",
-      "Match6",
-      "Match7"
-    ];
     List<Match> myMatches = List<Match>(3);
     myMatches[0] = new Match();
     myMatches[1] = new Match();
@@ -55,10 +46,15 @@ class Matches extends StatelessWidget {
 
     TagManagement tagControl = TagManagement(Tags.length, Tags);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff987d4d),
+        title: Text("My Matches"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              /*
               Container(
                 child: Row(
                   children: <Widget>[
@@ -95,6 +91,8 @@ class Matches extends StatelessWidget {
                   ],
                 ),
               ),
+
+               */
               Container(
                 child: Row(
                   children: <Widget>[
