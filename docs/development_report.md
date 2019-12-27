@@ -40,8 +40,8 @@ maximizing the time each one spends learning more about their favourite areas.
 Have you ever been to a conference and thought to yourself that many of the companies or participants that you talk to have very different interests than you do? Do you feel that you 
 end up wasting your time talking to people you don't want to instead of connecting to others that share your passions and have common goals to yours?
 With NeTinder, we are fixing this for good.
-By using our app paired with a microbit smart-tag device, you can select the topics aborded in a conference that are of most interest to you, and when you are nearby someone that is a 
-good match, your microbit will bleep and display a number. That number will also be displayed on the match's microbit, helping you find each other in such crowded places.
+By using our app, you can select the topics aborded in a conference that are of most interest to you, and when you are nearby someone that is a 
+good match, your phone will bleep and display a number. That number will also be displayed on the match's phone, helping you find each other in such crowded places.
 And the more you network with others, the more prizes you win!
 
 ---
@@ -67,7 +67,7 @@ And the more you network with others, the more prizes you win!
 
 * **Description** - In order for a participant to be matched with others, their favourite topics need to be explicited (which assume the form of tags). When the tags are selected, more appropriate matches will be found and the user's interaction will be much more valuable.
 
-* **Preconditions and Postconditions** - The user needs to have signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
+* **Preconditions and Postconditions** - The user needs to be signed up to the app and be authenticated. After picking the tags, these should be visible in the user's profile. The system should have one more tag in the list of selected tags.
 
 * **Normal Flow**
 
@@ -79,12 +79,46 @@ And the more you network with others, the more prizes you win!
     
     4 - The system now uses the tag to match the user with others that have picked this same tag
 
-* **Alternative Flows and Exceptions**. It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
+* **Alternative Flows and Exceptions** - It may happen that the tag a user wants to select doesn't exist. In this case, he will be unable to select it and the system will send an error message, as tags are assign per event (it doesn't make sense to match tags that have nothing to do with the event's context).
 
 #### View list of matches
-To be completed
+
+* **Actor** - A person attending the conference.
+
+* **Description** - In order for a participant to know to whom he was matched, he needs to have access to a page that shows him everyone who picked the same tags as him.
+
+* **Preconditions and Postconditions** - The user needs to be signed up to the app and be authenticated. After picking the tags, his matches should be visible in a page made for that. 
+
+* **Normal Flow**
+
+    1 - User inserts tags.
+
+    2 - The system calculates the matches based on the tags.
+
+    3 - The system shows the new matches and saves them.
+
+* **Alternative Flows and Exceptions** - It may happen that the user doesn't have any matches. In this case, no new matched would be shown in the page.
+
 #### Check/manage points and available discounts
-To be completed
+
+* **Actor** - A person attending the conference.
+
+* **Description** - The more active a participant is in our app, the more points he earns. For this, users will be able to check how many points thay have in ther personal page. These points can be traded in the conference sponsor's stand for discounts. 
+
+* **Preconditions and Postconditions** - The user needs to be signed up to the app and be authenticated. After picking the tags and being matched, he will start to earn points.
+
+* **Normal Flow**
+
+    1 - User is matched.
+
+    2 - User interacts with his matches.
+
+    3 - User earns points.
+
+    4 - User can trade points for discounts.
+
+* **Alternative Flows and Exceptions** - It may happen that the user doesn't have any points. In this case, he won't be able to trade his points for anything.
+
 
 ### User stories
 We have made our Trello board public so that you can check the user stories and acceptance test scenarios more easily. You can also see how the project is progressing by checking the board, as you'll be able to see when new features are finished, awaiting code review, added to the backlog... (https://trello.com/b/8qWwiWTX/netinder).
@@ -103,8 +137,63 @@ Our kanban board is made up of several lists:
 - Done - fully implemented requirements
 Each one of the cards in our Trello board has a mockup as an attatchment. Be sure to check it out!
 
-We are also assigning points to each of our stories as a way to measure the effort requires to implement each one of them. We'll be using the following set of fibonacci numbers while sizing a user story, from minimum to max effort: 1, 2, 3, 5, 8, 13, 21. 
+We are also assigning points to each of our stories as a way to measure the effort requires to implement each one of them. We'll be using the following set of Fibonacci numbers while sizing a user story, from minimum to max effort: 1, 2, 3, 5, 8, 13, 21. 
 
+### Domain model
+
+![domain](domain.png)
+
+---
+
+## Architecture and Design
+Our project is composed by three main modules:
+* Mobile application
+* Server
+* Database
+
+The **mobile app** is being developed in Flutter, and it currently targets Android devices. 
+
+The **server** is written in NodeJS, with the core machine-to-machine communications being handled by Express, a web application framework designed for building web applications and APIs. We are connecting the backend to the database with Mongoose, which is an Object Data Modeling (ODM) library for MongoDB and Node.js - it manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
+
+Finally, we also ship a MongoDB **datbase** to sync the user's and events' information with every device participating in the conference. We opted for MongoDB, which is a document database that provides us with great flexibility and scalability.
+
+We are implementing a Model-View-Controller (MVC) philosophy into our product, where:
+- The **model** holds the application's data structures, and is independente of the user interface. Directly manages the data, logic and rules of the application;
+- The **view** is the visual representation of the information held in the model;
+- The **controller** converts input into commands to be provided either to the model or to the view.
+
+We faced some problems during the intial architecture conception, mainly concerning the database and API connection. 
+1. We had difficulties trying to connect our Flutter frontend app with the server. What was happening was that we had our backend running locally on localhost, and we weren't able to make requests to the API inside the frontend, because the mobile phone and the PC running the backend had one different localhost each. As such, we had to wait for the backend to be deployed to be able to communicate between both. 
+2. Creating the database was also a challenge. We are using MongoDB, and because we had never worked with a NoSQL database before, we had some doubts about how to correctly display and distribute the data across multiple schemas. With some more experience and hard work, we were able to overcome this issue.
+
+### Logical architecture
+
+We are using the MCV pattern to better architecture the logic of our application, as we have explicited above.
+
+- The **model** is made up of the database, server and flutter code - it's the core of the application;
+- The **view** is made up of the pages of the mobile application, and lets the user visualize the data;
+- The **controller** processes input from the user, consults the model and updates the view accordingly.
+
+![logical-architecture](logical.png)
+
+
+### Physical architecture
+
+Our app uses the following physical components:
+
+- User's smartphone, with its array of sensors (containing at least WIFI and GPS sensors);
+- A database to hold the data of the users, conferences, 
+
+![physical-architecture](physical.png)
+
+### Prototype
+To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the s9ystem.
+
+In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+
+---
+
+## Implementation
 #### Iteration 1
 In our first iteration, we stumbled across several problems.
 
@@ -143,52 +232,35 @@ We would like to talk a bit more about the last topic in the previous list. As a
 It's a challenge we are very excited to take on, and we will be hard at work this week to make it a reality as soon as possible!
 
 #### Iteration 3
-This week our work on the backend was shared with every other group in the main open-cx repository. For that reason, our main focus was to continue the development of our API and database, so that all the groups would have something to start with. Specifically, we added some new models, requested by other groups, to our databse, as well as some new endpoints for fetching and adding the respective information. A general refactor of our whole backend solution was also made, though it has not yet been merged into the master branch. We expect it to be done in the first couple if days of Sprint 3. Besides that, we wish to have our server hosted through Heroku, though we are looking into different options, evaluating them and looking for the best. We also aim to have this task completed by the starting days of Sprint 3. Overall, we are very exited about this opportunity given to us by our professors, and we hope our work surpasses their expectations.
+
+During this iteration, our work on the backend was shared with every other group in the main open-cx repository. For that reason, our main focus was to continue the development of our API and database, so that all the groups would have something to start with. Specifically, we added some new models, requested by other groups, to our databse, as well as some new endpoints for fetching and adding the respective information. A general refactor of our whole backend solution was also made. Besides that, we have successfully deployed our backend to Heroku, so from now one every ESOF student can interact with the backend and make requests at will. We have also finished integrating the backend with Docker - the version currently available to every student is running on a Docker container.
+There are some things that we are working on, but are not yet finished:
+- We are implementing an authentication mecanism into the API, so that only users who are registered in the open-cx applications can access the data (and only data that they have permissions to access to).
+- Another feature we are dabbling with is the ability to run a MongoDB instance locally. This would speed up development for every student.
+- We are also in the middle of merging our documentation with the **openapiswagger** framework. Good documentation is an essential part of every software project, and we know that. This will help every open-cx developer understanding better how our systems work.
+- We are also thinking of switching the active-admin interface to another one, because the current one doesn't support adding objects in the web interface. We are still evaluating this matter, but expect to make a decision in the next couple of days.
+This is our Trello board right at the end of the second iteration. 
+
+![iteration3](iteration3.png)
+
 
 ### Domain model
 
 To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
 
----
+![iteration3](iteration3.png)
 
-## Architecture and Design
-Our project is composed by three main modules:
-* Mobile application
-* Server
-* Database
+#### Iteration 4
 
-The **mobile app** is being developed in Flutter, and it currently targets Android devices. 
+In this iteration, we have dedicated our time to add multiple new features to the app. 
+- An authentication system was implemented to the backend of the app. Now, users can register into the app and have their information saved on the database. The server checks if the information a user has inserted is valid, and allows them to login. When a user logs in, he/she gets a JWT (JSON Web Token) which will allow them to access private routes of the backend interface. For example:
+    - Imagine the user wants to view his/hers private information. Only him/her should be able to do so. Because the user gets a JWT when he logs in, he can show it to the backend when he wants to view the private information, and the backend will make sure that JWT is valid (and is owned by that user). If this happend, then the user has full access to his/her information. Otherwise, access is denied.
+We have also integrated the login page with the authentication funcionality, so it is fully operational.
+In addition, we have created pages on the app that allow users to view information on the conferences they've been to, as well as check their matches and the tags they have selected.
+New models have been added to the backend, as well as routes to access them. 
+Overall, this phase was all about implementing missing functionality and glueing it all together.
 
-The **server** is written in NodeJS, with the core machine-to-machine communications being handled by Express, a web application framework designed for building web applications and APIs. We are connecting the backend to the database with Mongoose, which is an Object Data Modeling (ODM) library for MongoDB and Node.js - it manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
-
-Finally, we also ship a MongoDB **datbase** to sync the user's and events' information with every device participating in the conference. We opted for MongoDB, which is a document database that provides us with great flexibility and scalability.
-
-
-### Logical architecture
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
-
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
-* horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
-* vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
-
-### Physical architecture
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
-
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
-
-### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
-
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
-
----
-
-## Implementation
-Regular product increments are a good practice of product management. 
-
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
-
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+We would like to note that our production rate has slowed down a bit because of how heavy Android Studio (and the Flutter integration) is on our computers. It has happened multiple times that the PCs freeze and need a reboot, which obviously causes some of the work done to be lost.
 
 ---
 ## Test
