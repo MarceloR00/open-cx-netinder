@@ -277,7 +277,20 @@ Finally, we have merged the authentication functionality with the main open-cx p
 ---
 ## Test
 
-Due to the fact that Andoid Studio was giving a lot of errors because of its recent update and also that we didn't understand the gherkin tool for the acceptance tests and how to link them to the rest of the app, only an example test is available in the test_driver folder inside the App folder. It is not tested, as a result of all the setbacks stated previously.
+
+
+In order to test our code and guarantee its quality, we took two different approaches: to create a set of test cases in our frontend block, as well as to develop a set of tests in the open-cx server repo, which would assure that all endpoints were woring correctly.
+
+However, due to the fact that Andoid Studio was giving a lot of errors because of its recent update and also that we didn't understand the gherkin tool for the acceptance tests and how to link them to the rest of the app, only an example test is available in the test_driver folder inside the App folder. Since we were facine this setback with Dart and its testing tool, we opted for improving our test cases in the open-cx server, which would also be helpful for other group members and for the main project in general.
+
+For the server test cases, we organized tests by the Object they handle. This is, all tests that handle Users are in a /users folder. Inside this folder, different files are to test different cases. For the moment, we developed tests for some endpoints of all the Objects. This means that all Objects handled by the server (Users, Conferences, Talks, Speakers, Questions, and so on) are all tested at least once. This is of great value since it lets us know from the start if some change we made has broken something. All tests run automatically and independently.
+
+A test file that is responsible for creating a local Database, so that we can test DB Documents, has also been added. This allows for even great coverage, since we can test how a given request to a given endpoint changes a Databse Document.
+
+All in all, the base for full test coverage has been created, and shall be built upon and continued with the project's progression.
+
+Since these tests are regarding the open-cx project server, these files can not be found in the present open-cx-netinder repo, but in the open-cx main repo instead.
+
 
 ---
 ## Configuration and change management
