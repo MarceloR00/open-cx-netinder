@@ -248,30 +248,36 @@ This is our Trello board right at the end of the second iteration.
 
 To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
 
-![iteration3](iteration3.png)
-
 #### Iteration 4
 
 In this iteration, we have dedicated our time to add multiple new features to the app. 
 - An authentication system was implemented to the backend of the app. Now, users can register into the app and have their information saved on the database. The server checks if the information a user has inserted is valid, and allows them to login. When a user logs in, he/she gets a JWT (JSON Web Token) which will allow them to access private routes of the backend interface. For example:
     - Imagine the user wants to view his/hers private information. Only him/her should be able to do so. Because the user gets a JWT when he logs in, he can show it to the backend when he wants to view the private information, and the backend will make sure that JWT is valid (and is owned by that user). If this happend, then the user has full access to his/her information. Otherwise, access is denied.
-We have also integrated the login page with the authentication funcionality, so it is fully operational.
+We have also integrated the login page with the authentication functionality, so it is fully operational.
 In addition, we have created pages on the app that allow users to view information on the conferences they've been to, as well as check their matches and the tags they have selected.
 New models have been added to the backend, as well as routes to access them. 
 Overall, this phase was all about implementing missing functionality and glueing it all together.
 
 We would like to note that our production rate has slowed down a bit because of how heavy Android Studio (and the Flutter integration) is on our computers. It has happened multiple times that the PCs freeze and need a reboot, which obviously causes some of the work done to be lost.
 
+
+#### Iteration 5
+
+This was the last iteration of the project. This one was all about adding missing features to the app. 
+
+The tag system is finally implemented. Users can now choose tags that represent a variety of topics related to the conferences, such as "backend", "frontend", "blockchain"... There is a special menu dedicated to this. After the user selecting the tags he desires, the app comunicates with our backend server and alters the information of the database, then, it reports back to the app concerning the success of the operation.
+
+Some general bugs were also ironed out. We have also integrated our colleagues' Pull Requests into the main open-cx server and updated our app's user interface.
+
+Finally, we have merged the authentication functionality with the main open-cx project. It's now fully operational!
+
+![iteration5](iteration5.png)
+
+
 ---
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
-
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+Due to the fact that Andoid Studio was giving a lot of errors because of its recent update and also that we didn't understand the gherkin tool for the acceptance tests and how to link them to the rest of the app, only an example test is available in the test_driver folder inside the App folder. It is not tested, as a result of all the setbacks stated previously.
 
 ---
 ## Configuration and change management
