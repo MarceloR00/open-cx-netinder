@@ -265,13 +265,7 @@ We would like to note that our production rate has slowed down a bit because of 
 ---
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
-
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+Due to the fact that Andoid Studio was giving a lot of errors because of its recent update and also that we didn't understand the gherkin tool for the acceptance tests and how to link them to the rest of the app, only an example test is available in the test_driver folder inside the App folder. It is not tested, as a result of all the setbacks stated previously.
 
 ---
 ## Configuration and change management
