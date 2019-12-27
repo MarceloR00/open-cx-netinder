@@ -172,8 +172,8 @@ class SignUpFormState extends State<SignUpPageForm> {
                 if (value.isEmpty) {
                   return "Please insert a Password";
                 }
-                else if (value.length < 6) {
-                  return "Password must be at least 6 characters long";
+                else if (value.length < 8) {
+                  return "Password must be at least 8 characters long";
                 }
                 return null;
               },

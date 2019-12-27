@@ -1,42 +1,8 @@
+import 'package:NeTinder/TagDisplay.dart';
 import 'package:NeTinder/addTag.dart';
 import 'package:NeTinder/matches.dart';
 import 'package:flutter/material.dart';
 import 'package:NeTinder/ApiConnection.dart';
-
-
-class TagManagement {
-  int indexList;
-  int numElem;
-  List tags;
-
-
-  TagManagement(int size, List tags) {
-    this.numElem = size;
-    this.tags = tags;
-    this.indexList = 0;
-  }
-
-  incIndex() {
-    this.indexList++;
-  }
-
-  getIndex() {
-    return indexList;
-  }
-
-  getElem() {
-    return numElem;
-  }
-
-  reduceElem() {
-    this.numElem--;
-  }
-
-  display() {
-
-
-  }
-}
 
 class Profile extends StatefulWidget {
   final UserAuth auth;
@@ -66,8 +32,6 @@ class ProfileState extends State<Profile> {
     List _Tags = [];
     int _Points = 0;
 
-    TagManagement tagControl = TagManagement(_Tags.length, _Tags);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff987d4d),
@@ -86,40 +50,6 @@ class ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-
-              /*
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 20,
-                      height: 2,
-                    ),
-                    new Text(
-                      "My Profile",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-
-
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                ),
-              ),
-
-               */
 
               Container(
                 child: Row(
@@ -351,17 +281,12 @@ class ProfileState extends State<Profile> {
                                 );
                               }
                               else {
-                                return GridView.count(
-                                  crossAxisCount: 3,
-                                  children: snapshot.data.tags.map((value) {
-                                    return Container(
-                                      alignment: Alignment.center,
-                                      margin: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.black),),
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                return Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                  ),
+                                  child: TagDisplay(tags: snapshot.data.tags,),
                                 );
                               }
                             }
@@ -445,7 +370,7 @@ class ProfileState extends State<Profile> {
                       splashColor: Colors.blueAccent,
 
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Matches() ));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MatchPage() ));
                       },
 
                       child: Text(

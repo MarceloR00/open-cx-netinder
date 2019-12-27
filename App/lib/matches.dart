@@ -1,455 +1,108 @@
 import 'package:flutter/material.dart';
 
-class TagManagement {
-  int indexList;
-  int numElem;
-  List tags;
-
-  TagManagement(int size, List tags) {
-    this.numElem = size;
-    this.tags = tags;
-    this.indexList = 0;
-  }
-
-  incIndex() {
-    this.indexList++;
-  }
-
-  getIndex() {
-    return indexList;
-  }
-
-  getElem() {
-    return numElem;
-  }
-
-  reduceElem() {
-    this.numElem--;
-  }
-
-  display() {}
-}
+import 'TagDisplay.dart';
 
 class Match {
-  final String matchName = "Beatriz Cardoso";
-  final String photoPath = "docs/beatrizcardoso.png";
+  final String name;
+  final List<dynamic> tags;
+
+  Match(this.name, this.tags);
 }
 
-class Matches extends StatelessWidget {
+
+class MatchPage extends StatelessWidget {
+  Match match1 = new Match("Gajoo", ["cenas 1", "cenas 2", "cenas 3"]);
+  Match match2 = new Match("Gajoo", ["cenas 1", "cenas 2", "cenas 3"]);
+
   @override
   Widget build(BuildContext context) {
-    final List Tags = ["Tag1", "Tag2", "Tag3", "Tag4", "Tag5"];
-    List<Match> myMatches = List<Match>(3);
-    myMatches[0] = new Match();
-    myMatches[1] = new Match();
-    myMatches[2] = new Match();
-
-    TagManagement tagControl = TagManagement(Tags.length, Tags);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff987d4d),
         title: Text("My Matches"),
       ),
-      body: SafeArea(
+      body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              /*
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 70,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 20,
-                      height: 20,
-                    ),
-                    new Text(
-                      "My Matches",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                ),
-              ),
-
-               */
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 1,
-                      height: 2,
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 600,
-                        child: GridView.count(
-                          crossAxisCount: 1,
-                          children: myMatches.map((match) {
-                            return Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                      child: SizedBox(
-                                          width: 380,
-                                          height: 300,
-                                          child: FittedBox(
-                                            child: Image.asset(match.photoPath),
-                                            fit: BoxFit.fitWidth,
-                                          ))),
-                                  Container(child: Text(match.matchName)),
-                                  Container(child: Text(' ')),
-                                  Container(
-                                    child: tagControl.getElem() >= 4
-                                        ? Container(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Container(
-                                                  alignment: Alignment.center,
-                                                  color: Colors.blueGrey[300],
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 10.0,
-                                                      horizontal: 28),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        //INSERIR DA BASE DE DADOS
-                                                        Tags.elementAt(
-                                                            tagControl
-                                                                .getIndex()),
-                                                        style: TextStyle(
-                                                          fontSize: 16.0,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                  height: 2,
-                                                ),
-                                                Container(
-                                                  color: Colors.blueGrey[300],
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 10.0,
-                                                      horizontal: 28),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        //INSERIR DA BASE DE DADOS
-                                                        Tags.elementAt(
-                                                            tagControl
-                                                                .getIndex()),
-                                                        style: TextStyle(
-                                                          fontSize: 16.0,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                      // tagControl.incIndex(),
-                                                      // tagControl.reduceElem(),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                  height: 2,
-                                                ),
-                                                Container(
-                                                  color: Colors.blueGrey[300],
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 10.0,
-                                                      horizontal: 28),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        //INSERIR DA BASE DE DADOS
-                                                        Tags.elementAt(
-                                                            tagControl
-                                                                .getIndex()),
-                                                        style: TextStyle(
-                                                          fontSize: 16.0,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                      // tagControl.incIndex(),
-                                                      // tagControl.reduceElem(),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                  height: 2,
-                                                ),
-                                                Container(
-                                                  color: Colors.blueGrey[300],
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 10.0,
-                                                      horizontal: 28),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        //INSERIR DA BASE DE DADOS
-                                                        Tags.elementAt(
-                                                            tagControl
-                                                                .getIndex()),
-                                                        style: TextStyle(
-                                                          fontSize: 16.0,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                      // tagControl.incIndex(),
-                                                      // tagControl.reduceElem(),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                  height: 2,
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        : tagControl.getElem() == 3
-                                            ? Container(
-                                                alignment: Alignment.center,
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Container(
-                                                      color:
-                                                          Colors.blueGrey[300],
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 10.0,
-                                                              horizontal: 28),
-                                                      child: Column(
-                                                        children: <Widget>[
-                                                          Text(
-                                                            //INSERIR DA BASE DE DADOS
-                                                            Tags.elementAt(
-                                                                tagControl
-                                                                    .getIndex()),
-                                                            style: TextStyle(
-                                                              fontSize: 16.0,
-                                                              color: Colors
-                                                                  .black87,
-                                                            ),
-                                                          ),
-                                                          //tagControl.incIndex(),
-                                                          //tagControl.reduceElem(),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                      height: 2,
-                                                    ),
-                                                    Container(
-                                                      color: Colors.blueGrey,
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 10.0,
-                                                              horizontal: 28),
-                                                      child: Column(
-                                                        children: <Widget>[
-                                                          Text(
-                                                            //INSERIR DA BASE DE DADOS
-                                                            Tags.elementAt(
-                                                                tagControl
-                                                                    .getIndex()),
-                                                            style: TextStyle(
-                                                              fontSize: 16.0,
-                                                              color: Colors
-                                                                  .black87,
-                                                            ),
-                                                          ),
-                                                          //tagControl.incIndex(),
-                                                          //tagControl.reduceElem(),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      color:
-                                                          Colors.blueGrey[300],
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 10.0,
-                                                              horizontal: 28),
-                                                      child: Column(
-                                                        children: <Widget>[
-                                                          Text(
-                                                            //INSERIR DA BASE DE DADOS
-                                                            Tags.elementAt(
-                                                                tagControl
-                                                                    .getIndex()),
-                                                            style: TextStyle(
-                                                              fontSize: 16.0,
-                                                              color: Colors
-                                                                  .black87,
-                                                            ),
-                                                          ),
-                                                          // tagControl.incIndex(),
-                                                          // tagControl.reduceElem(),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                      height: 2,
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            : tagControl.getElem() == 2
-                                                ? Container(
-                                                    alignment: Alignment.center,
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Container(
-                                                          color: Colors
-                                                              .blueGrey[300],
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical:
-                                                                      10.0,
-                                                                  horizontal:
-                                                                      28),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                //INSERIR DA BASE DE DADOS
-                                                                Tags.elementAt(
-                                                                    tagControl
-                                                                        .getIndex()),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  color: Colors
-                                                                      .black87,
-                                                                ),
-                                                              ),
-                                                              //tagControl.incIndex(),
-                                                              //tagControl.reduceElem(),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 5,
-                                                          height: 2,
-                                                        ),
-                                                        Container(
-                                                          color:
-                                                              Colors.blueGrey,
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical:
-                                                                      10.0,
-                                                                  horizontal:
-                                                                      28),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                //INSERIR DA BASE DE DADOS
-                                                                Tags.elementAt(
-                                                                    tagControl
-                                                                        .getIndex()),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  color: Colors
-                                                                      .black87,
-                                                                ),
-                                                              ),
-                                                              //tagControl.incIndex(),
-                                                              //tagControl.reduceElem(),
-                                                            ],
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                : Container(
-                                                    alignment: Alignment.center,
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Container(
-                                                          color:
-                                                              Colors.blueGrey,
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical:
-                                                                      10.0,
-                                                                  horizontal:
-                                                                      28),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                //INSERIR DA BASE DE DADOS
-                                                                Tags.elementAt(
-                                                                    tagControl
-                                                                        .getIndex()),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  color: Colors
-                                                                      .black87,
-                                                                ),
-                                                              ),
-                                                              //tagControl.incIndex(),
-                                                              //tagControl.reduceElem(),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 10,
-                height: 40,
-              ),
-            ],
+          child: Container(
+            color: Colors.white,
+            padding: EdgeInsets.all(10),
+            child: MatchDisplay(matches: [match1, match2],),
           ),
         ),
       ),
     );
   }
+}
+
+class MatchCard extends StatelessWidget {
+  final Match match;
+
+  const MatchCard({Key key, this.match}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.symmetric(vertical: 8.0),
+        decoration: BoxDecoration( //To show the borders
+          border: Border.all(width: 1.0, color: Colors.black),
+        ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: 4 * MediaQuery.of(context).size.width / 5,
+            minHeight: 3 * MediaQuery.of(context).size.width / 5,
+            maxWidth: 4 * MediaQuery.of(context).size.width / 5,
+          ),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                width: 4 * MediaQuery.of(context).size.width / 5,
+                height: 3 * MediaQuery.of(context).size.width / 5,
+                child: FittedBox(
+                  child: Image.asset("docs/beatrizcardoso.png"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    child: Text(match.name),
+                  ),
+                  TagDisplay(tags: match.tags),
+                ],
+              )
+            ],
+          ),
+        )
+    );
+  }
+}
+
+class MatchDisplay extends StatelessWidget {
+  final List<Match> matches;
+
+  const MatchDisplay({Key key, this.matches}) : super(key: key);
+
+
+  Widget matchCol() {
+    if (matches.length == 0) {
+      return new Text("You have no matches yet! Add Some tags!");
+    }
+
+    List<Widget> matchCards = new List<Widget>();
+
+    for (var i = 0; i < matches.length; i++) {
+      matchCards.add(new MatchCard(match: matches[i],));
+    }
+
+    return new Column(children: matchCards,);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return this.matchCol();
+  }
+
 }

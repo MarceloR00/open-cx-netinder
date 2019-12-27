@@ -106,7 +106,7 @@ class AddTagFormState extends State<AddTagForm> {
               color: Color(0xfffaf2cc),
               height: 50,
               child:
-              Text("LOGIN"),
+              Text("ADD TAG"),
             ),
           ),
         ],
