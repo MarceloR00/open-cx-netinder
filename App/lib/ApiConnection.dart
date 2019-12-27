@@ -79,15 +79,22 @@ class User {
       fullname: json['fullname'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
-      tags: json['tags'] as List<dynamic>,
+      tags: ["Networking","Web design","Security","Artifitial Inteligence","Algorthms"],
       matches: json['matches'] as List<dynamic>,
       conferences: json['conferences'] as List<dynamic>
     );
   }
 }
 
+class Match {
+  final String name;
+  final List<dynamic> tags;
+
+  Match(this.name, this.tags);
+}
+
 class MatchList {
-  final List<dynamic> matches;
+  final List<Match> matches;
 
   MatchList({this.matches});
 
@@ -165,12 +172,22 @@ class ApiConnection {
 
     http.Response res = await http.post(matchUrl);
 
+    /*
     //Verify statusCode
     final int statusCode = res.statusCode;
     if (statusCode < 200 || statusCode >= 400 || json == null) {
       throw new ConnectionException(res.body);
     }
+    Commented to not throw exception when server fails
+     */
 
-    return MatchList.fromJson(json.decode(res.body));
+    //TODO remove mock
+    Match match1 = new Match("Beatriz", ["Networks","Security"]);
+    Match match2 = new Match("Joana", ["Artifitial inteligence", "Algorithms"]);
+    Match match3 = new Match("Francisca", ["Web design", "Security"]);
+
+    List<Match> mock = [match1,match2,match3];
+
+    return new MatchList(matches: mock);
   }
 }

@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'TagDisplay.dart';
 
-class Match {
-  final String name;
-  final List<dynamic> tags;
-
-  Match(this.name, this.tags);
-}
-
-
 class MatchPage extends StatelessWidget {
   final String userId;
 
