@@ -79,9 +79,28 @@ class User {
       fullname: json['fullname'] as String,
       email: json['email'] as String,
       password: json['password'] as String,
-      tags: json['tags'] as List<dynamic>,
+      tags: ["Networking","Web design","Security","Artifitial Inteligence","Algorthms"],
       matches: json['matches'] as List<dynamic>,
       conferences: json['conferences'] as List<dynamic>
+    );
+  }
+}
+
+class Match {
+  final String name;
+  final List<dynamic> tags;
+
+  Match(this.name, this.tags);
+}
+
+class MatchList {
+  final List<Match> matches;
+
+  MatchList({this.matches});
+
+  factory MatchList.fromJson(Map<String, dynamic> json) {
+    return MatchList(
+      matches: json['matches'] as List<dynamic>
     );
   }
 }
@@ -90,6 +109,7 @@ class ApiConnection {
   static final String registerUrl = 'https://tranquil-springs-58074.herokuapp.com/users/register';
   static final String loginUrl = 'https://tranquil-springs-58074.herokuapp.com/users/login';
   static final String getInfoUrl = 'https://tranquil-springs-58074.herokuapp.com/users';
+  static final String matchUrl = 'https://tranquil-springs-58074.herokuapp.com/';
 
   static void registerUser({Map userRegisterInfo}) async {
     // Send the request
@@ -144,6 +164,30 @@ class ApiConnection {
 
     String authToken = res.headers['auth-token'];
 
-   return new UserAuth(email: userLoginInfo['email'], authToken: authToken);
+    return new UserAuth(email: userLoginInfo['email'], authToken: authToken);
+  }
+
+  static Future<MatchList> getUserMatches(String userID) async {
+    String url = ApiConnection.matchUrl + userID + '/matches';
+
+    http.Response res = await http.post(matchUrl);
+
+    /*
+    //Verify statusCode
+    final int statusCode = res.statusCode;
+    if (statusCode < 200 || statusCode >= 400 || json == null) {
+      throw new ConnectionException(res.body);
+    }
+    Commented to not throw exception when server fails
+     */
+
+    //TODO remove mock
+    Match match1 = new Match("Beatriz", ["Networks","Security"]);
+    Match match2 = new Match("Joana", ["Artifitial inteligence", "Algorithms"]);
+    Match match3 = new Match("Francisca", ["Web design", "Security"]);
+
+    List<Match> mock = [match1,match2,match3];
+
+    return new MatchList(matches: mock);
   }
 }

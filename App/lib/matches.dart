@@ -1,18 +1,12 @@
+import 'package:NeTinder/ApiConnection.dart';
 import 'package:flutter/material.dart';
 
 import 'TagDisplay.dart';
 
-class Match {
-  final String name;
-  final List<dynamic> tags;
-
-  Match(this.name, this.tags);
-}
-
-
 class MatchPage extends StatelessWidget {
-  Match match1 = new Match("Gajoo", ["cenas 1", "cenas 2", "cenas 3"]);
-  Match match2 = new Match("Gajoo", ["cenas 1", "cenas 2", "cenas 3"]);
+  final String userId;
+
+  const MatchPage({Key key, this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +20,7 @@ class MatchPage extends StatelessWidget {
           child: Container(
             color: Colors.white,
             padding: EdgeInsets.all(10),
-            child: MatchDisplay(matches: [match1, match2],),
+            child: MatchCol(userId: userId,),
           ),
         ),
       ),
@@ -34,10 +28,68 @@ class MatchPage extends StatelessWidget {
   }
 }
 
+class MatchCol extends StatefulWidget {
+  final String userId;
+
+  const MatchCol({Key key, this.userId}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return MatchDisplay(userId);
+  }
+}
+
+class MatchDisplay extends State<MatchCol> {
+  final String userId;
+  Future<MatchList> matchList;
+
+  MatchDisplay(this.userId);
+
+  @override
+  void initState() {
+    super.initState();
+
+    matchList = ApiConnection.getUserMatches(this.userId);
+  }
+
+  Widget matchCol(List<dynamic> matches) {
+    if (matches.length == 0) {
+      return new Text("You have no matches yet! Add Some tags!");
+    }
+
+    List<Widget> matchCards = new List<Widget>();
+
+    for (var i = 0; i < matches.length; i++) {
+      matchCards.add(new MatchCard(match: matches[i],));
+    }
+
+    return new Column(children: matchCards,);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<MatchList> (
+      future: matchList,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return matchCol(snapshot.data.matches);
+        }
+        else if (snapshot.hasError) {
+          return Text("Could not fetch user matches");
+        }
+        else {
+          return CircularProgressIndicator();
+        }
+      },
+    );
+  }
+}
+
+
 class MatchCard extends StatelessWidget {
   final Match match;
 
-  const MatchCard({Key key, this.match}) : super(key: key);
+  MatchCard({Key key, this.match});
 
   @override
   Widget build(BuildContext context) {
@@ -78,31 +130,4 @@ class MatchCard extends StatelessWidget {
         )
     );
   }
-}
-
-class MatchDisplay extends StatelessWidget {
-  final List<Match> matches;
-
-  const MatchDisplay({Key key, this.matches}) : super(key: key);
-
-
-  Widget matchCol() {
-    if (matches.length == 0) {
-      return new Text("You have no matches yet! Add Some tags!");
-    }
-
-    List<Widget> matchCards = new List<Widget>();
-
-    for (var i = 0; i < matches.length; i++) {
-      matchCards.add(new MatchCard(match: matches[i],));
-    }
-
-    return new Column(children: matchCards,);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return this.matchCol();
-  }
-
 }
