@@ -360,23 +360,43 @@ class ProfileState extends State<Profile> {
                       height: 2,
                     ),
 
-                    RaisedButton(
-                      color: Color(0xfffaf2cc),
-                      textColor: Color(0xff987d4d),
-                      disabledColor: Color(0xfffaf2cc),
-                      //disabledTextColor: Color(0xffff8c1a),
-                      disabledTextColor: Color(0xff987d4d),
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
+                    FutureBuilder<User>(
+                      future: user,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return RaisedButton(
+                            color: Color(0xfffaf2cc),
+                            textColor: Color(0xff987d4d),
+                            disabledColor: Color(0xfffaf2cc),
+                            //disabledTextColor: Color(0xffff8c1a),
+                            disabledTextColor: Color(0xff987d4d),
+                            padding: EdgeInsets.all(8.0),
+                            splashColor: Colors.blueAccent,
 
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MatchPage() ));
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MatchPage(userId: snapshot.data.userID,)));
+                            },
+                            child: Text(
+                              "Get Some!",
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                          );
+                        }
+                        else {
+                          return RaisedButton(
+                            color: Color(0xfffaf2cc),
+                            textColor: Color(0xff987d4d),
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            padding: EdgeInsets.all(8.0),
+                            splashColor: Colors.blueAccent,
+                            child: Text(
+                              "Get Some!",
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                          );
+                        }
                       },
-
-                      child: Text(
-                        "Get Some!",
-                        style: TextStyle(fontSize: 15.0),
-                      ),
                     ),
                   ],
                 ),

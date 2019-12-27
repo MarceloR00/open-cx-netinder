@@ -86,10 +86,23 @@ class User {
   }
 }
 
+class MatchList {
+  final List<dynamic> matches;
+
+  MatchList({this.matches});
+
+  factory MatchList.fromJson(Map<String, dynamic> json) {
+    return MatchList(
+      matches: json['matches'] as List<dynamic>
+    );
+  }
+}
+
 class ApiConnection {
   static final String registerUrl = 'https://tranquil-springs-58074.herokuapp.com/users/register';
   static final String loginUrl = 'https://tranquil-springs-58074.herokuapp.com/users/login';
   static final String getInfoUrl = 'https://tranquil-springs-58074.herokuapp.com/users';
+  static final String matchUrl = 'https://tranquil-springs-58074.herokuapp.com/';
 
   static void registerUser({Map userRegisterInfo}) async {
     // Send the request
@@ -144,6 +157,20 @@ class ApiConnection {
 
     String authToken = res.headers['auth-token'];
 
-   return new UserAuth(email: userLoginInfo['email'], authToken: authToken);
+    return new UserAuth(email: userLoginInfo['email'], authToken: authToken);
+  }
+
+  static Future<MatchList> getUserMatches(String userID) async {
+    String url = ApiConnection.matchUrl + userID + '/matches';
+
+    http.Response res = await http.post(matchUrl);
+
+    //Verify statusCode
+    final int statusCode = res.statusCode;
+    if (statusCode < 200 || statusCode >= 400 || json == null) {
+      throw new ConnectionException(res.body);
+    }
+
+    return MatchList.fromJson(json.decode(res.body));
   }
 }
