@@ -1,40 +1,8 @@
+import 'package:NeTinder/TagDisplay.dart';
+import 'package:NeTinder/addTag.dart';
+import 'package:NeTinder/matches.dart';
 import 'package:flutter/material.dart';
 import 'package:NeTinder/ApiConnection.dart';
-
-
-class TagManagement {
-  int indexList;
-  int numElem;
-  List tags;
-
-
-  TagManagement(int size, List tags) {
-    this.numElem = size;
-    this.tags = tags;
-    this.indexList = 0;
-  }
-
-  incIndex() {
-    this.indexList++;
-  }
-
-  getIndex() {
-    return indexList;
-  }
-
-  getElem() {
-    return numElem;
-  }
-
-  reduceElem() {
-    this.numElem--;
-  }
-
-  display() {
-
-
-  }
-}
 
 class Profile extends StatefulWidget {
   final UserAuth auth;
@@ -61,12 +29,14 @@ class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     String _Phone = "Not Found";
-    List _Tags = ["Tag1", "Tag2", "Tag3", "Tag4"];
+    List _Tags = [];
     int _Points = 0;
 
-    TagManagement tagControl = TagManagement(_Tags.length, _Tags);
-
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff987d4d),
+        title: Text("My Profile"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -76,51 +46,6 @@ class ProfileState extends State<Profile> {
                   children: <Widget>[
                     SizedBox(
                       height: 70,
-                    ),
-                  ],
-                ),
-              ),
-
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 20,
-                      height: 2,
-                    ),
-                    new Text(
-                      "My Profile",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                ),
-              ),
-
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: FittedBox(
-                        child: Image.asset('docs/user.jpg'),
-                        fit: BoxFit.fitWidth,
-                      ),
                     ),
                   ],
                 ),
@@ -149,7 +74,8 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 100),
+                      width: 2 * MediaQuery.of(context).copyWith().size.width/3,
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
                           FutureBuilder<User>(
@@ -213,7 +139,8 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 100),
+                      width: 2 * MediaQuery.of(context).copyWith().size.width/3,
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
                           FutureBuilder<User>(
@@ -277,7 +204,8 @@ class ProfileState extends State<Profile> {
 
                     Container(
                       color: Colors.blueGrey,
-                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 100),
+                      width: 2 * MediaQuery.of(context).copyWith().size.width/3,
+                      padding: EdgeInsets.symmetric(vertical:10.0, horizontal: 10),
                       child: Column(
                         children: <Widget>[
                           Text(
@@ -317,26 +245,59 @@ class ProfileState extends State<Profile> {
                     ),
 
                     SizedBox(
-                      width: 38,
+                      width: 25,
                       height: 2,
                     ),
 
                     Expanded(
                       child: Container(
                         height: 200,
+                        margin: EdgeInsets.all(0),
+                        padding: EdgeInsets.all(0),
 
-                        child: GridView.count(
-                          crossAxisCount: 3,
-                          children: _Tags.map((value) {
-                            return Container(
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),),
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
+                        child: FutureBuilder<User> (
+                          future: user,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.data.tags.length == 0) {
+                                return Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                  ),
+                                  child: ButtonTheme(
+                                    minWidth: 2 * MediaQuery.of(context).copyWith().size.width/3,
+                                    child: RaisedButton (
+                                      color: Color(0xfffaf2cc),
+                                      textColor: Color(0xff987d4d),
+                                      padding: EdgeInsets.all(8.0),
+                                      splashColor: Colors.blueAccent,
+                                      child: Text("Add tags!"),
+                                      onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => AddTag()));
+                                      },
+                                ),
+                                  ),
+                                );
+                              }
+                              else {
+                                return Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                  ),
+                                  child: TagDisplay(tags: snapshot.data.tags,),
+                                );
+                              }
+                            }
+                            else if (snapshot.hasError) {
+                              return new Text("Could not get Tags!");
+                            }
+                            else {
+                              return CircularProgressIndicator();
+                            }
+                          },
+                        )
                       ),
                     ),
                   ],
@@ -400,18 +361,20 @@ class ProfileState extends State<Profile> {
                     ),
 
                     RaisedButton(
-                      color: Colors.yellowAccent,
-                      textColor: Colors.white,
+                      color: Color(0xfffaf2cc),
+                      textColor: Color(0xff987d4d),
                       disabledColor: Color(0xfffaf2cc),
                       //disabledTextColor: Color(0xffff8c1a),
                       disabledTextColor: Color(0xff987d4d),
                       padding: EdgeInsets.all(8.0),
                       splashColor: Colors.blueAccent,
 
-                      //onPressed: (),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MatchPage() ));
+                      },
 
                       child: Text(
-                        "Manage them!",
+                        "Get Some!",
                         style: TextStyle(fontSize: 15.0),
                       ),
                     ),

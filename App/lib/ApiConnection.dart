@@ -103,12 +103,7 @@ class ApiConnection {
     //Verify statusCode
     final int statusCode = res.statusCode;
 
-    print(statusCode);
-    print(res.body);
-
     if (statusCode < 200 || statusCode >= 400 || json == null) {
-      print(statusCode);
-      print(res.body);
       throw new ConnectionException("Error resistering user: " + res.body);
     }
   }
@@ -132,12 +127,8 @@ class ApiConnection {
       throw new ConnectionException(res.body);
     }
 
-    print("HEREEEEEE");
-    print(res.body.toString());
-
     User u = User.fromJson(json.decode(res.body));
 
-    print(u.toString());
     return u;
   }
 
@@ -151,9 +142,7 @@ class ApiConnection {
       throw new ConnectionException(res.body);
     }
 
-    print("Code: " + statusCode.toString());
     String authToken = res.headers['auth-token'];
-    print(authToken);
 
    return new UserAuth(email: userLoginInfo['email'], authToken: authToken);
   }

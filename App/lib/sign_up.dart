@@ -172,8 +172,8 @@ class SignUpFormState extends State<SignUpPageForm> {
                 if (value.isEmpty) {
                   return "Please insert a Password";
                 }
-                else if (value.length < 6) {
-                  return "Password must be at least 6 characters long";
+                else if (value.length < 8) {
+                  return "Password must be at least 8 characters long";
                 }
                 return null;
               },
@@ -263,10 +263,12 @@ class SignUpFormState extends State<SignUpPageForm> {
 
                     Future<UserAuth> auth = ApiConnection.loginUser(userLoginInfo: info.toMap());
                     auth.then((realAuth) {
+                      Navigator.pop(context);
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Profile(auth: realAuth,)));})
                         .catchError((e)  => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.error))),
                           test: (e) => e is ConnectionException)
                         .catchError((e) => Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.toString()))));
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text("Registering User, please wait")));
                   }
                 },
                 textColor: Colors.white,
